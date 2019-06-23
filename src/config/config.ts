@@ -6,7 +6,7 @@ export class Config {
  private _config: Object;
  private _env: Object;
  constructor(private http: Http) {
-   this.http.get('../../assets/env.json')
+   this.http.get('env.json')
    //.map(res => res.json())
    .subscribe((env_data) => {
      console.log(env_data);

@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
 
 import { promise } from 'protractor';
-import { Config } from './config/config';
+import { Config } from '../config/config';
 export let post = new HttpParams()
 .set('apikey', 'S84pc_fPCPXy8g_Pj0z0MHMJ8I0sdg8sCUl2yy3ONUkuM0l3MvFxLQrxy6jKLNH3cSwqCTUojcwz8quKcvcrDwMA') 
 .set('hash', '9282ac3e16b8cbb6b885766f23c8339ebd49594c'); 
