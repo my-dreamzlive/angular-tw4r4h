@@ -18,19 +18,21 @@ export class Apps {
   api: any;
   info: any;
   options = {headers: new Headers({ 'Content-Type': 'x-www-form-urlencoded' }), responseType: 'text'};
-  params = new HttpParams();
+  httpRequest = new HttpParams();
   constructor(private config: Config, private http: HttpClient){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
     this.api = config.get('api');
     let token;
-    token = new Promise(resolve => this.getResponse("request::token").subscribe(resolve));
     
+    token = new Promise(resolve => this.getResponse('request::token').subscribe(resolve));
+    token.then(res =>{
+      console.log(res);
+    });
   }
   getResponse(action, params: any = null) {
-    let req;
-    req = this.params;
-    req.set('action', action);
+    let req = this.httpRequest;
+    req = req.set('action', action).set('apikey',this.api.key).set('hash',this.api.hash);
     if ( params !== null ) {
 
       Object.entries(params).forEach((param) => {
@@ -40,7 +42,7 @@ export class Apps {
     }
 
 
-      return this.http.post(this.api.url, req, this.options).map(res => res);
+      return this.http.post(this.api.url + 'request.php', req).map(res => res);
     }
    
   
