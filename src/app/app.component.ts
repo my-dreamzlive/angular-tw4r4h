@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-
-import { LoginComponent } from './public/login/login.component';
 import { Apps } from './app.apps';
 @Component({
   selector: 'my-app',

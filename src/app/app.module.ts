@@ -9,7 +9,7 @@ import { Apps } from './app.apps';
 import { LoginComponent } from './public/login/login.component';
 import { LoginResetComponent } from './public/login-reset/login-reset.component';
 
-import { Config } from '../config/config';
+import { Config } from './app.config';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule ],
