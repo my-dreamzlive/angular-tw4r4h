@@ -1,30 +1,47 @@
 import { Injectable, NgModule, ModuleWithProviders } from '@angular/core';
 
-import { Http } from '@angular/http';
 import { RouterModule, Routes, Router, ActivatedRoute, NavigationStart, NavigationEnd, ParamMap } from '@angular/router';
 
+import { HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
 
 import { promise } from 'protractor';
 import { Config } from './app.config';
 
-export let apilink = 'https://api.prasanthinilayam.in/';
 
 import * as Rx from 'rxjs/Observable';
 import { Observable, Subject } from 'rxjs/Rx';
-
 @Injectable()
 export class Apps {
-  Name = 'SaiAdmin';
-  Version = '1.0.0';
   env: string;
   api: any;
-  headerConf = {headers: new Headers({ 'Content-Type': 'x-www-form-urlencoded' })};
-  constructor(private config: Config){
+  info: any;
+  options = {headers: new Headers({ 'Content-Type': 'x-www-form-urlencoded' }), responseType: 'text'};
+  params = new HttpParams();
+  constructor(private config: Config, private http: HttpClient){
     this.env = config.getEnv('env');
+    this.info = config.getEnv('info');
     this.api = config.get('api');
-    console.log(this.api);
+    let token;
+    token = new Promise(resolve => this.getResponse("request::token").subscribe(resolve));
+    
   }
+  getResponse(action, params: any = null) {
+    let req;
+    req = this.params;
+    req.set('action', action);
+    if ( params !== null ) {
 
+      Object.entries(params).forEach((param) => {
+
+        req = req.set(param[0], param[1]);
+      });
+    }
+
+
+      return this.http.post(this.api.url, req, this.options).map(res => res);
+    }
+   
+  
 }

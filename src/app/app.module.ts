@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Apps } from './app.apps';
 // import { Route } from './app.route';
@@ -12,7 +13,7 @@ import { LoginResetComponent } from './public/login-reset/login-reset.component'
 import { Config } from './app.config';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule ],
   declarations: [ AppComponent, LoginComponent, LoginResetComponent ],
   providers: [ 
     Config, 
