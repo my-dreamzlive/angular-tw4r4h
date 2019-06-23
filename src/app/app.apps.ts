@@ -18,11 +18,13 @@ import { Observable, Subject } from 'rxjs/Rx';
 export class Apps {
   Name = 'SaiAdmin';
   Version = '1.0.0';
+  env: string;
+  api: any;
   headerConf = {headers: new Headers({ 'Content-Type': 'x-www-form-urlencoded' })};
   constructor(private config: Config){
-    config.load();
-    var env = config.getEnv('env');
-    console.log(env);
+    this.env = config.getEnv('env');
+    this.api = config.get('api');
+    console.log(this.api);
   }
 
 }
