@@ -11,7 +11,7 @@ export class AuthService {
     let Response;
     Response = new Promise((resolve) => this.App.getResponse("check::login").subscribe(resolve));
     Response.then(res=>{
-      this.isLogin = (res);
+      this.isLogin = res;
     });
   }
 
