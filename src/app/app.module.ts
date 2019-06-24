@@ -7,22 +7,25 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Apps } from './app.apps';
-// import { Route } from './app.route';
+import { Routes } from './app.routes';
 import { LoginComponent } from './public/login/login.component';
 import { LoginResetComponent } from './public/login-reset/login-reset.component';
 
 import { Config } from './app.config';
-import { Auth } from './app.auth';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule, NgbModule.forRoot() ],
-  declarations: [ AppComponent, LoginComponent, LoginResetComponent ],
+  declarations: [ AppComponent, LoginComponent, LoginResetComponent, DashboardComponent ],
   providers: [ 
     Config, 
     { provide: APP_INITIALIZER, useFactory: (config:Config) => () => { 
       return config.load();
      }, deps: [Config, Http], multi: true },
     Apps,
-    Auth,
+    AuthService,
+    AuthGuardService
     
   ],
   bootstrap:    [ AppComponent ]

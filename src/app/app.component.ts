@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Apps } from './app.apps';
-import { Auth } from './app.auth';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -8,7 +7,7 @@ import { Auth } from './app.auth';
 })
 export class AppComponent  {
   App;
-  constructor(public Apps: Apps, private Auth: Auth){
+  constructor(public Apps: Apps){
     this.App = Apps;
     this.App.view = 'front';
   }
