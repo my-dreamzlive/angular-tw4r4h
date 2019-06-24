@@ -25,7 +25,7 @@ export class Apps {
     this.info = config.getEnv('info');
     this.api = config.get('api');
     this.headers = new HttpHeaders()
-    .set('Content-Type', 'x-www-form-urlencoded')
+    .set('Content-Type', 'application/x-www-form-urlencoded') 
     .set('Authkey', this.api.key).set('AuthHash', this.api.hash);
     this.options = {headers: this.headers, responseType: 'text'};
     let token;
@@ -36,8 +36,8 @@ export class Apps {
     });
   }
   getResponse(action, params: any = null) {
-    let req = this.httpRequest;
-    req = req.set('action', action).set('AuthKey',this.api.key).set('hash',this.api.hash);
+    let req = new HttpParams();
+    req = req.set('action', action);
     if ( params !== null ) {
 
       Object.entries(params).forEach((param) => {
@@ -47,7 +47,7 @@ export class Apps {
     }
 
 
-      return this.http.post(this.api.url + 'request.php', req, this.options).map(res => res);
+      return this.http.post(this.api.url, req, this.options).map(res => res);
     }
    
   
