@@ -28,7 +28,7 @@ export class Apps {
     this.headers = new HttpHeaders()
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .set('Authkey', this.api.key).set('AuthHash', this.api.hash);
-    this.options = {headers: this.headers};
+    this.options = {headers: this.headers, responseType:'text'};
     this.requestToken();
     
   }
