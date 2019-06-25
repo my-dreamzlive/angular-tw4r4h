@@ -26,7 +26,7 @@ export function getConfig(config:Config){
   providers: [ 
     Config, Apps,
     AuthService,
-    { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config, Http, AuthService], multi: true },
+    { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config, Http], multi: true },
    
   ],
   bootstrap:    [ AppComponent ]
