@@ -15,18 +15,19 @@ import { Config } from './app.config';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+export function getConfig(config:Config){
+  return () => config.load()
+}
+
+
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule, NgbModule.forRoot(), appRouting ],
   declarations: [ AppComponent, LoginComponent, LoginResetComponent, DashboardComponent ],
   providers: [ 
-    Config, 
-    { provide: APP_INITIALIZER, useFactory: (config:Config) => () => { 
-      return config.load();
-     }, deps: [Config, Http], multi: true },
-    Apps,
+    Config, Apps,
     AuthService,
-    AuthGuardService
-    
+    { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config, Http, AuthService], multi: true },
+   
   ],
   bootstrap:    [ AppComponent ]
 })

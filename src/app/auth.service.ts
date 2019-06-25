@@ -3,17 +3,20 @@ import { Apps } from './app.apps';
 
 import { promise } from 'protractor';
 @Injectable()
-export class AuthService {
-  isLogin;
+export class AuthService{
+  Authenticated;
   constructor(private App: Apps) { }
 
-  public Authenticated(){
-    let Response;
-    Response = new Promise((resolve) => this.App.getResponse("check::login").subscribe(resolve));
-    Response.then(res=>{
-      this.isLogin = res;
-      console.log(this.isLogin);
-    });
+  public Authenticate(){
+    return new Promise((resolve, reject) => {
+        this.App.getResponse("check::login")
+        .subscribe((res) => {
+            this.Authenticated = res;
+            resolve(true);
+          
+        });
+      });
+    
   }
 
 }
