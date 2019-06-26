@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class LoginComponent {
  loginForm: FormGroup;
  valid: boolean = false;
- 
+ loginResp;
  constructor(private Apps: Apps, private fb: FormBuilder) {
         
         this.loginForm = this.fb.group({
@@ -26,7 +26,15 @@ export class LoginComponent {
   submitForm() {
     let credentials = this.loginForm.value;
     this.Apps.doLogin(credentials).then(res => {
-      console.log(res);
+      const keys = Object.keys(res);
+        console.log(res);
+          this.loginResp = {
+              "type":keys[0],
+              "text":res
+          };
+          if ( keys[0] === 'RES' || keys[0] === 'INF') {
+            
+          }
     });
   }
   flipcard(cardview: String){
