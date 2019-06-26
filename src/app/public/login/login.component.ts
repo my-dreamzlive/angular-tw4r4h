@@ -41,7 +41,7 @@ export class LoginComponent {
               "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
-            
+            this.Apps.navigate(['']);
           }
     });
   }

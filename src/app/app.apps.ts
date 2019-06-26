@@ -23,7 +23,7 @@ export class Apps {
   headers: any;
   token: any;
   httpRequest = new HttpParams();
-  islogin: any;
+  login: any;
   constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
@@ -34,6 +34,7 @@ export class Apps {
     this.options = {headers: this.headers};
     // this.options = {headers: this.headers, responseType:'text'};
     this.token = config.token;
+    this.login = config.Authenticate;
   }
   
   getResponse(action, params: any = null) {
@@ -49,19 +50,6 @@ export class Apps {
       });
     }
     return this.http.post(this.api.url, req, this.options).map(res => res);
-  }
-
-  
-
-  getLogin(){
-    
-    //console.log(crxf);
-    this.islogin = new Promise(resolve => this.config.getResponse('master::check::login').subscribe((res)=>{
-        
-        resolve(res);
-    }));
-    
-   
   }
 
   doLogin(credentials){

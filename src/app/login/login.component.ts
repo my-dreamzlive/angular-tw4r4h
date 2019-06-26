@@ -11,18 +11,12 @@ export class LoginComponent implements OnInit {
   constructor(public Apps: Apps, public router: Router) { 
     this.App = Apps;
     this.App.view = 'front';
-    this.App.getLogin();
   }
 
   ngOnInit() {
-    this.App.islogin.then(res => {
-      this.App.islogin = res;
-        if(typeof(res['status'] !== 'undefined')){
-         if(res['status'] === true || res['status']=== '1'){
-            //this.App.navigate(["/"]);
-          }
-        }
-    });
+    if(this.App.login === true){
+      this.router.navigate(['']);
+    }
   }
 
 }

@@ -26,25 +26,20 @@ load() {
      .map(res => res)
      .subscribe((data) => {
        this._config = data;
+       
         let headers = new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .set('Authkey', data.api.key).set('AuthHash', data.api.hash);
         this.options = {headers: headers};
-        let httpRequest = new HttpParams();
-        httpRequest.set('action','request::token');
+        let httpRequest = new HttpParams().set('action','request::token');
         let storage = window.localStorage;
         let crxf = storage.getItem('crxf');
-        //console.log(crxf);
-        if(typeof(crxf)!=='string'){
-          this.http.post(data.api.url, req, this.options)
+        if(crxf == null){
+          this.http.post(data.api.url, httpRequest, this.options)
           .map(res => res)
           .subscribe((pdata)=>{
-            if(pdata.token !== 'undefined'){
-              storage.setItem('crxf',pdata.token);
-              
-              this.token = pdata.token;
-              resolve(true);
-            }
+            this.token = pdata.token;
+            storage.setItem('crxf',this.token);
           });
         }else{
           this.token = crxf;
@@ -62,6 +57,7 @@ Auth(){
      setTimeout(()=>{
             this.getResponse("master::check::login").subscribe(res => {
             this.Authenticate = res;
+            
             resolve();
           });
        }, 3000);
