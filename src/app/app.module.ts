@@ -8,7 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Apps } from './app.apps';
 import { appRouting } from './app.routes';
-import { LoginComponent } from './public/login/login.component';
+import { LoginComponent } from './login/login.component';
+import { LoginComponent as LoginTemplate } from './public/login/login.component';
 import { LoginResetComponent } from './public/login-reset/login-reset.component';
 
 import { Config } from './app.config';
@@ -19,14 +20,18 @@ export function getConfig(config:Config){
   return () => config.load()
 }
 
+export function AuthUser(Auth: AuthService){
+  return () => Auth.Authenticate();
+}
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule, NgbModule.forRoot(), appRouting ],
-  declarations: [ AppComponent, LoginComponent, LoginResetComponent, DashboardComponent ],
+  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent ],
   providers: [ 
     Config, Apps,
     AuthService,
-    { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config, Http], multi: true },
+    AuthGuardService,
+    { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config], multi: true }
    
   ],
   bootstrap:    [ AppComponent ]

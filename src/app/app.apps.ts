@@ -1,3 +1,4 @@
+
 import { Injectable, NgModule, ModuleWithProviders } from '@angular/core';
 
 import { RouterModule, Routes, Router, ActivatedRoute, NavigationStart, NavigationEnd, ParamMap } from '@angular/router';
@@ -9,6 +10,7 @@ import 'rxjs/add/operator/map';
 import { promise } from 'protractor';
 import { Config } from './app.config';
 
+import { AuthService } from './auth.service';
 
 import * as Rx from 'rxjs/Observable';
 import { Observable, Subject } from 'rxjs/Rx';
@@ -21,7 +23,8 @@ export class Apps {
   headers: any;
   token: any;
   httpRequest = new HttpParams();
-  constructor(private config: Config, private http: HttpClient){
+  islogin: any;
+  constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
     this.api = config.get('api');
@@ -31,7 +34,6 @@ export class Apps {
     this.options = {headers: this.headers};
     // this.options = {headers: this.headers, responseType:'text'};
     this.requestToken();
-    
   }
   
   getResponse(action, params: any = null) {
@@ -64,6 +66,33 @@ export class Apps {
     }
     this.token = crxf;
   }
-  
+
+  getLogin(){
+    
+    //console.log(crxf);
+    this.islogin = new Promise(resolve => this.getResponse('check::login').subscribe((res)=>{
+        
+        resolve(res);
+    }));
+    
+   
+  }
+
+  doLogin(user:any,pass:any){
+    let params;
+    params = {
+      "user":user,
+      "pwd":pass
+    }
+    return new Promise(resolve => this.getResponse('auser::login',params).subscribe((res)=>{
+        resolve(res);
+    }));
+
+  }
+
+  navigate(val){
+    this.router.navigate(val);
+
+  }
   
 }
