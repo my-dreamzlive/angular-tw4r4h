@@ -10,6 +10,7 @@ import {
 } from './auth-guard.service';
 export let appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  
   { 
     path: '',
     component: DashboardComponent,

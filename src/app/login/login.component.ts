@@ -16,9 +16,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.App.islogin.then(res => {
+      this.App.islogin = res;
         if(typeof(res['status'] !== 'undefined')){
-          if(res['status'] === true){
-            this.router.navigate([""]);
+         if(res['status'] === true || res['status']=== '1'){
+            //this.App.navigate(["/"]);
           }
         }
     });

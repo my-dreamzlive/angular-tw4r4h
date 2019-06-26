@@ -7,21 +7,11 @@ import { Apps } from './app.apps';
 @Injectable()
 export class AuthGuardService implements CanActivate{
   
-  constructor(private auth: AuthService, public router: Router, public app: Apps) {
+  constructor(private auth: AuthService, public app: Apps) {
    
   }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.auth.Authenticate().then(res => {
-       
-        if(typeof(res['status']) !== 'undefined'){
-          if(res['status'] === true || res['status']=== '1'){
-            return true;
-          }else{
-            this.app.router.navigate(['./login']);
-            return false;
-          }
-        }
-    });
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
     // console.log(this.auth.isLogin);
     
   }
