@@ -26,11 +26,19 @@ export class LoginComponent {
   submitForm() {
     let credentials = this.loginForm.value;
     this.Apps.doLogin(credentials).then(res => {
+      res = typeof(res) !== 'object' ? JSON.parse(res): res;
       const keys = Object.keys(res);
+      let cls;
+       cls = {
+         'RES':'sucess',
+         'INF':'info',
+         'ERR':'danger',
+         'WAR':'warning'
+       }
         console.log(res);
           this.loginResp = {
-              "type":keys[0],
-              "text":res
+              "type":cls[keys[0]],
+              "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
             
