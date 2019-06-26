@@ -30,7 +30,7 @@ export class LoginComponent {
       const keys = Object.keys(res);
       let cls;
        cls = {
-         'RES':'sucess',
+         'RES':'success',
          'INF':'info',
          'ERR':'danger',
          'WAR':'warning'

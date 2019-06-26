@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Apps } from '../app.apps';
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { Apps } from '../app.apps';
 })
 export class LoginComponent implements OnInit {
   App;
-  constructor(public Apps: Apps) { 
+  constructor(public Apps: Apps, public router: Router) { 
     this.App = Apps;
     this.App.view = 'front';
     this.App.getLogin();
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     this.App.islogin.then(res => {
         if(typeof(res['status'] !== 'undefined')){
           if(res['status'] === true){
-            this.App.navigate(['/dashboard']);
+            this.router.navigate([""]);
           }
         }
     });

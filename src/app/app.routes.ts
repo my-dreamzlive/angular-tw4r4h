@@ -9,12 +9,13 @@ import {
   AuthGuardService as AuthGuard 
 } from './auth-guard.service';
 export let appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { 
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
     canActivate: [AuthGuard] 
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes, {
