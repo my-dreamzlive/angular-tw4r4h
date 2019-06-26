@@ -24,6 +24,7 @@ export class Apps {
   token: any;
   httpRequest = new HttpParams();
   login: any;
+  user;
   constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
@@ -34,7 +35,12 @@ export class Apps {
     this.options = {headers: this.headers};
     // this.options = {headers: this.headers, responseType:'text'};
     this.token = config.token;
-    this.login = config.Authenticate;
+    this.user = config.Authenticate;
+    if(typeof(this.user.id)!=='undefined'){
+        this.login = true;
+    }else{
+        this.login = false;
+    }
   }
   
   getResponse(action, params: any = null) {
