@@ -33,16 +33,14 @@ export class Apps {
     .set('Authkey', this.api.key).set('AuthHash', this.api.hash);
     this.options = {headers: this.headers};
     // this.options = {headers: this.headers, responseType:'text'};
-    this.requestToken();
+    this.token = config.token;
   }
   
   getResponse(action, params: any = null) {
     let req = this.httpRequest;
-    if(typeof(this.token)=='undefined'){
-      req = req.set('action', action);
-    }else{
+    
       req = req.set('action', action).set('token',this.token);
-    }
+    
     if ( params !== null ) {
 
       Object.entries(params).forEach((param) => {
@@ -53,24 +51,12 @@ export class Apps {
     return this.http.post(this.api.url, req, this.options).map(res => res);
   }
 
-  requestToken(): void{
-    let storage = window.localStorage;
-    let crxf = storage.getItem('crxf');
-    //console.log(crxf);
-    if(typeof(crxf)!=='string'){
-        this.token = new Promise(resolve => this.getResponse('request::token').subscribe(resolve));
-        this.token.then(res =>{
-          storage.setItem('crxf',res.token);
-          //console.log(encodeURI(res));
-        });
-    }
-    this.token = crxf;
-  }
+  
 
   getLogin(){
     
     //console.log(crxf);
-    this.islogin = new Promise(resolve => this.getResponse('master::check::login').subscribe((res)=>{
+    this.islogin = new Promise(resolve => this.config.getResponse('master::check::login').subscribe((res)=>{
         
         resolve(res);
     }));
