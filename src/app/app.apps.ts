@@ -70,7 +70,7 @@ export class Apps {
   getLogin(){
     
     //console.log(crxf);
-    this.islogin = new Promise(resolve => this.getResponse('check::login').subscribe((res)=>{
+    this.islogin = new Promise(resolve => this.getResponse('master::check::login').subscribe((res)=>{
         
         resolve(res);
     }));
@@ -78,13 +78,9 @@ export class Apps {
    
   }
 
-  doLogin(user:any,pass:any){
-    let params;
-    params = {
-      "user":user,
-      "pwd":pass
-    }
-    return new Promise(resolve => this.getResponse('auser::login',params).subscribe((res)=>{
+  doLogin(credentials){
+   this.options = {headers: this.headers, responseType:'text'};
+    return new Promise(resolve => this.getResponse('master::user::login',credentials).subscribe((res)=>{
         resolve(res);
     }));
 

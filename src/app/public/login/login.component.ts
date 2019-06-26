@@ -25,7 +25,9 @@ export class LoginComponent {
   get pass() { return this.loginForm.get('pass'); }
   submitForm() {
     let credentials = this.loginForm.value;
-    console.log(credentials);
+    this.Apps.doLogin(credentials).then(res => {
+      console.log(res);
+    });
   }
   flipcard(cardview: String){
     this.Apps.view = cardview;

@@ -12,8 +12,8 @@ export class AuthGuardService implements CanActivate{
   }
   canActivate(): boolean {
     this.auth.Authenticate().then(res => {
-        console.log(res);
-        if(typeof(res['status'] !== 'undefined')){
+        if(typeof(res['status']) !== 'undefined'){
+          console.log(res);
           return res['status'];
         }else{
           return false;

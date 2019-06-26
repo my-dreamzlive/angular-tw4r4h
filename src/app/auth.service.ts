@@ -9,9 +9,10 @@ export class AuthService{
 
   public Authenticate(){
     return new Promise((resolve, reject) => {
-        this.App.getResponse("check::login")
+        this.App.getResponse("master::check::login")
         .subscribe((res) => {
             this.islogin = res;
+            
             resolve(res);
           
         });
