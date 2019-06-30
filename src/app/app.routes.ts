@@ -14,7 +14,8 @@ export let appRoutes: Routes = [
   { 
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   { path: '**', redirectTo: '' }
 ];

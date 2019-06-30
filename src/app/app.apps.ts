@@ -25,6 +25,7 @@ export class Apps {
   httpRequest = new HttpParams();
   login: any;
   user;
+  storage = window.localStorage;
   constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
@@ -61,11 +62,31 @@ export class Apps {
   doLogin(credentials){
    this.options = {headers: this.headers, responseType:'text'};
     return new Promise(resolve => this.getResponse('master::user::login',credentials).subscribe((res)=>{
+      res = typeof(res) !== 'object' ? JSON.parse(res): res;
+      
+      if(typeof(res['xtoken'])!=='undefined'){
+       
+        this.storage.setItem('xtoken',res['xtoken']);
+        this.navigate(['']);
+      }
         resolve(res);
     }));
 
   }
-
+  doLogout(){
+    this.options = {headers: this.headers, responseType:'text'};
+    return new Promise(resolve => this.getResponse('master::user::logout').subscribe((res)=>{
+        if(typeof(res)=='string'){
+          res = JSON.parse(res);
+        }
+        const keys = Object.keys(res);
+        if (typeof(keys[0]) !== 'undefined' && ( keys[0] === 'RES' || keys[0] === 'INF')) {
+          this.navigate(['/login']);
+        }
+         console.log(res);
+        resolve(res);
+    }));
+  }
   navigate(val){
     this.router.navigate(val);
 

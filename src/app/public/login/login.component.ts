@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Apps } from './../../app.apps';
+import { AuthService } from './../../auth.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent {
  loginForm: FormGroup;
  valid: boolean = false;
  loginResp;
- constructor(private Apps: Apps, private fb: FormBuilder) {
+ constructor(private Apps: Apps, private fb: FormBuilder, private auth: AuthService) {
         
         this.loginForm = this.fb.group({
           'user': [null,  [Validators.minLength(4), Validators.required ]],
@@ -37,10 +38,11 @@ export class LoginComponent {
        }
         console.log(res);
           this.loginResp = {
-              "type":cls[keys[0]],
-              "text":res[keys[0]]
+             // "type":cls[keys[0]],
+             // "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
+            this.auth.Authenticate();
             this.Apps.navigate(['']);
           }
     });
