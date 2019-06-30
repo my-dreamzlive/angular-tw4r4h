@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Apps } from './../../app.apps';
 import { AuthService } from './../../auth.service';
 
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'login',
@@ -12,7 +13,7 @@ export class LoginComponent {
  loginForm: FormGroup;
  valid: boolean = false;
  loginResp;
- constructor(private Apps: Apps, private fb: FormBuilder, private auth: AuthService) {
+ constructor(private Apps: Apps, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private auth: AuthService) {
         
         this.loginForm = this.fb.group({
           'user': [null,  [Validators.minLength(4), Validators.required ]],
@@ -36,14 +37,26 @@ export class LoginComponent {
          'ERR':'danger',
          'WAR':'warning'
        }
-        console.log(res);
+        
           this.loginResp = {
              "type":cls[keys[0]],
              "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
-            this.auth.Authenticate();
-            this.Apps.navigate(['']);
+            console.log(this.Apps.config.token);
+            console.log(this.Apps.config.xtoken);
+            this.Apps.config.Auth();
+            let authuser = this.Apps.config.Authenticate;
+            if(typeof(authuser.id)=='undefined'){
+              this.loginResp.text += '_PLZ_WAIT';
+                setInterval(()=>{
+                    this.router.navigate(['']).then(nav=>{
+                        console.log(nav);
+                    },err=>{
+                        console.log(err);
+                    });
+                },1000);
+            }
           }
     });
   }

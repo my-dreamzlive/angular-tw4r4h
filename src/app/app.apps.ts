@@ -86,7 +86,6 @@ export class Apps {
           delete this.config.xtoken;
           this.navigate(['/login']);
         }
-         console.log(res);
         resolve(res);
     }));
   }
