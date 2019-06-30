@@ -7,8 +7,9 @@ export class Config {
  private _env: Object;
  public Authenticate: any;
  token;
- 
+ xtoken;
  options;
+ storage = window.localStorage;
  constructor(private http: HttpClient) {
    //this.load();
    //console.log(this._config);
@@ -32,17 +33,19 @@ load() {
         .set('Authkey', data.api.key).set('AuthHash', data.api.hash);
         this.options = {headers: headers};
         let httpRequest = new HttpParams().set('action','request::token');
-        let storage = window.localStorage;
-        let crxf = storage.getItem('crxf');
+        
+        let crxf = this.storage.getItem('crxf');
         if(crxf == null){
           this.http.post(data.api.url, httpRequest, this.options)
           .map(res => res)
           .subscribe((pdata)=>{
             this.token = pdata.token;
-            storage.setItem('crxf',this.token);
+            this.storage.setItem('crxf',this.token);
+
           });
         }else{
           this.token = crxf;
+          this.xtoken = this.storage.getItem('xtoken');
           resolve(true);
         }
      });

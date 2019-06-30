@@ -81,6 +81,7 @@ export class Apps {
         }
         const keys = Object.keys(res);
         if (typeof(keys[0]) !== 'undefined' && ( keys[0] === 'RES' || keys[0] === 'INF')) {
+          this.storage.removeItem('xtoken');
           this.navigate(['/login']);
         }
          console.log(res);

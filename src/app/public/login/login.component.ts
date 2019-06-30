@@ -38,8 +38,8 @@ export class LoginComponent {
        }
         console.log(res);
           this.loginResp = {
-             // "type":cls[keys[0]],
-             // "text":res[keys[0]]
+             "type":cls[keys[0]],
+             "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
             this.auth.Authenticate();
