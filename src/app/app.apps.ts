@@ -67,6 +67,7 @@ export class Apps {
       if(typeof(res['xtoken'])!=='undefined'){
        
         this.storage.setItem('xtoken',res['xtoken']);
+        this.config.xtoken = res['xtoken'];
         this.navigate(['']);
       }
         resolve(res);
@@ -82,6 +83,7 @@ export class Apps {
         const keys = Object.keys(res);
         if (typeof(keys[0]) !== 'undefined' && ( keys[0] === 'RES' || keys[0] === 'INF')) {
           this.storage.removeItem('xtoken');
+          delete this.config.xtoken;
           this.navigate(['/login']);
         }
          console.log(res);
