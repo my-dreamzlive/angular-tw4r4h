@@ -32,7 +32,16 @@
 	animation-direction: alternate;
 	text-shadow: 0 0 1px white;
 }
-
+.navigation{
+  float: left;
+  width:18vw; 
+  height: 100%;
+}
+.page-content{
+  float:left;
+  width:81vw;
+  padding: 1em 1.8em;
+}
 .login-form{
   max-width:30%;
   padding:1vw;

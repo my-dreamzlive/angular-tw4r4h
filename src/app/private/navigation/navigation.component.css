@@ -1,0 +1,21 @@
+aside{
+  
+    height: 100%;
+    background: #EFEFEF;
+}
+aside ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+}
+aside ul li{
+ 
+  text-align: center;
+}
+aside ul li a{
+  background: #dc3545;
+  color: #fff;
+  display:block;
+   padding:.5em;
+}

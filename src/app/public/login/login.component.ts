@@ -52,9 +52,8 @@ export class LoginComponent {
               this.loginResp.text = 'Loading...';
                 setInterval(()=>{
                     this.router.navigate(['']).then(nav=>{
-                        console.log(nav);
+                       
                     },err=>{
-                        console.log(err);
                     });
                 },1000);
             }

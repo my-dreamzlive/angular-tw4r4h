@@ -16,6 +16,8 @@ import { AuthService } from './auth.service';
 import { TitleService } from './title.service';
 import { AuthGuardService } from './auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavigationComponent } from './private/navigation/navigation.component';
+import { TopbarComponent } from './private/topbar/topbar.component';
 export function getConfig(config:Config){
   return () => config.load()
 }
@@ -24,7 +26,7 @@ export function getAuth(config:Config){
 }
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule,   HttpClientModule, NgbModule.forRoot(), appRouting ],
-  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent ],
+  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent ],
   providers: [ 
     Config, Apps, TitleService,
     AuthService,
