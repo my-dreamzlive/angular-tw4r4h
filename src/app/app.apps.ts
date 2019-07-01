@@ -1,6 +1,8 @@
 
 import { Injectable, NgModule, ModuleWithProviders } from '@angular/core';
 
+import { Title } from '@angular/platform-browser';
+
 import { RouterModule, Routes, Router, ActivatedRoute, NavigationStart, NavigationEnd, ParamMap } from '@angular/router';
 
 import { HttpHeaders, HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -26,7 +28,7 @@ export class Apps {
   login: any;
   user;
   storage = window.localStorage;
-  constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute){
+  constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute, private titleService: Title){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
     this.api = config.get('api');

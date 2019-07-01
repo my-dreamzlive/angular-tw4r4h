@@ -9,17 +9,21 @@ import {
   AuthGuardService as AuthGuard 
 } from './auth-guard.service';
 export let appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { title: 'Login'} },
   
   { 
     path: '',
     component: DashboardComponent,
     canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'always',
+    data: { title: 'Dashboard'}
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '',  }
 ];
-
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
 export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes, {
   useHash: true
 });

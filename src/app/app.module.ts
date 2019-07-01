@@ -13,6 +13,7 @@ import { LoginResetComponent } from './public/login-reset/login-reset.component'
 
 import { Config } from './app.config';
 import { AuthService } from './auth.service';
+import { TitleService } from './title.service';
 import { AuthGuardService } from './auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 export function getConfig(config:Config){
@@ -25,7 +26,7 @@ export function getAuth(config:Config){
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule,   HttpClientModule, NgbModule.forRoot(), appRouting ],
   declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent ],
   providers: [ 
-    Config, Apps,
+    Config, Apps, TitleService,
     AuthService,
     AuthGuardService,
     { provide: APP_INITIALIZER, useFactory: getConfig, deps: [Config], multi: true },
