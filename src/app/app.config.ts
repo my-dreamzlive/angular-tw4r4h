@@ -56,12 +56,11 @@ load() {
  });
 }
 Auth(){
-  
-  
   return new Promise((resolve, reject)=>
   {
      setTimeout(()=>{
             this.getResponse("master::check::login").subscribe(res => {
+            console.log(res);
             this.Authenticate = res;
             
             resolve();
