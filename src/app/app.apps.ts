@@ -54,8 +54,9 @@ export class Apps {
     if ( params !== null ) {
 
       Object.entries(params).forEach((param) => {
-
-        req = req.set(param[0], param[1]);
+        if(typeof(param[0]) == 'string' && typeof(param[1])=='string'){
+          req = req.set(param[0], param[1]);
+        }
       });
     }
     return this.http.post(this.api.url, req, this.options).map(res => res);
