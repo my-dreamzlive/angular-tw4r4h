@@ -48,7 +48,7 @@ export class LoginComponent {
             this.Apps.config.Auth();
             let authuser = this.Apps.config.Authenticate;
             if(typeof(authuser.id)=='undefined'){
-              this.loginResp.text += '_PLZ_WAIT';
+              this.loginResp.text = 'Loading...';
                 setInterval(()=>{
                     this.router.navigate(['']).then(nav=>{
                         console.log(nav);
