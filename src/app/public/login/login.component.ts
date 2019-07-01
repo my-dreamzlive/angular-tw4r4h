@@ -28,7 +28,9 @@ export class LoginComponent {
   submitForm() {
     let credentials = this.loginForm.value;
     this.Apps.doLogin(credentials).then(res => {
-      res = typeof(res) !== 'object' ? JSON.parse(res): res;
+      if(typeof(res) == 'string'){
+        res = JSON.parse(res);
+      }
       const keys = Object.keys(res);
       let cls;
        cls = {
@@ -43,8 +45,7 @@ export class LoginComponent {
              "text":res[keys[0]]
           };
           if ( keys[0] === 'RES' || keys[0] === 'INF') {
-            console.log(this.Apps.config.token);
-            console.log(this.Apps.config.xtoken);
+            
             this.Apps.config.Auth();
             let authuser = this.Apps.config.Authenticate;
             if(typeof(authuser.id)=='undefined'){

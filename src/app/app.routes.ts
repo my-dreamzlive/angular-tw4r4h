@@ -20,10 +20,7 @@ export let appRoutes: Routes = [
   },
   { path: '**', redirectTo: '',  }
 ];
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
+
 export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes, {
   useHash: true
 });

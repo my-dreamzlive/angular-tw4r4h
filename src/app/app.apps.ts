@@ -26,9 +26,10 @@ export class Apps {
   token: any;
   httpRequest = new HttpParams();
   login: any;
+  view: any;
   user;
   storage = window.localStorage;
-  constructor(private config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute, private titleService: Title){
+  constructor(public config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute, private titleService: Title){
     this.env = config.getEnv('env');
     this.info = config.getEnv('info');
     this.api = config.get('api');

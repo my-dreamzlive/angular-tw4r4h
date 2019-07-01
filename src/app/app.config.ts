@@ -21,34 +21,37 @@ load() {
    
    this.http.get('../assets/env.json')
    .map(res => res)
-   .subscribe((env_data) => {
+   .subscribe((env_data: Object) => {
      this._env = env_data;
-     this.http.get('../assets/' + env_data.env + '.json')
-     .map(res => res)
-     .subscribe((data) => {
-       this._config = data;
-       
-        let headers = new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-        .set('Authkey', data.api.key).set('AuthHash', data.api.hash);
-        this.options = {headers: headers};
-        let httpRequest = new HttpParams().set('action','request::token');
-        
-        let crxf = this.storage.getItem('crxf');
-        if(crxf == null){
-          this.http.post(data.api.url, httpRequest, this.options)
-          .map(res => res)
-          .subscribe((pdata)=>{
-            this.token = pdata.token;
-            this.storage.setItem('crxf',this.token);
-
-          });
-        }else{
-          this.token = crxf;
-          this.xtoken = this.storage.getItem('xtoken');
-          resolve(true);
-        }
-     });
+     if(typeof(env_data['env'])=='string'){
+      this.http.get('../assets/' + env_data['env'] + '.json')
+        .map(res => res)
+        .subscribe((data) => {
+          this._config = data;
+          
+          let headers = new HttpHeaders()
+          .set('Content-Type', 'application/x-www-form-urlencoded')
+          .set('Authkey', data['api'].key).set('AuthHash', data['api'].hash);
+          this.options = {headers: headers};
+          let httpRequest = new HttpParams().set('action','request::token');
+          
+          let crxf = this.storage.getItem('crxf');
+          if(crxf == null){
+            this.http.post(data['api'].url, httpRequest, this.options)
+            .map(res => res)
+            .subscribe((pdata)=>{
+              this.token = pdata['token'];
+              this.storage.setItem('crxf',this.token);
+  
+            });
+          }else{
+            this.token = crxf;
+            this.xtoken = this.storage.getItem('xtoken');
+            resolve(true);
+          }
+        });
+     }
+     
    });
  });
 }
@@ -70,18 +73,19 @@ getResponse(action, params: any = null) {
   let req = new HttpParams();
   let headers = new HttpHeaders()
   .set('Content-Type', 'application/x-www-form-urlencoded')
-  .set('Authkey', this._config.api.key).set('AuthHash', this._config.api.hash);
+  .set('Authkey', this._config['api'].key).set('AuthHash', this._config['api'].hash);
   this.options = {headers: headers};
   req = req.set('action', action).set('token',this.token);
   
   if ( params !== null ) {
 
     Object.entries(params).forEach((param) => {
-
-      req = req.set(param[0], param[1]);
+      if(typeof(param[0]) == 'string' && typeof(param[1])=='string'){
+        req = req.set(param[0], param[1]);
+      }
     });
   }
-  return this.http.post(this._config.api.url, req, this.options).map(res => res);
+  return this.http.post(this._config['api'].url, req, this.options).map(res => res);
 }
 
  getEnv(key: any) {
