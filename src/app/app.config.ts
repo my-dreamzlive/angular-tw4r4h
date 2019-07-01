@@ -59,10 +59,9 @@ Auth(){
   return new Promise((resolve, reject)=>
   {
      setTimeout(()=>{
-            this.getResponse("master::check::login").subscribe(res => {
-            console.log(res);
+        
+          this.getResponse("master::check::login").subscribe(res => {
             this.Authenticate = res;
-            
             resolve();
           });
        }, 3000);
@@ -74,7 +73,7 @@ getResponse(action, params: any = null) {
   .set('Content-Type', 'application/x-www-form-urlencoded')
   .set('Authkey', this._config['api'].key).set('AuthHash', this._config['api'].hash);
   this.options = {headers: headers};
-  req = req.set('action', action).set('token',this.token);
+  req = req.set('action', action).set('token',this.token).set('xtoken',encodeURI(btoa(this.xtoken)));
   
   if ( params !== null ) {
 
