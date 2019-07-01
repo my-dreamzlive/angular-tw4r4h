@@ -8,7 +8,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TitleService {
-  default_title = 'MyAngular App';
+  default_title = 'Dreamzlive Production';
 
   constructor(
     private router: Router,
