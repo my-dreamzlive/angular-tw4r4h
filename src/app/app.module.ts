@@ -32,6 +32,9 @@ import { UsersComponent } from './private/users/users.component';
 import { AdminsComponent } from './private/admins/admins.component';
 import { SettingsComponent } from './private/settings/settings.component';
 import { GlobalsComponent } from './private/globals/globals.component';
+import { UserslogComponent } from './private/userslog/userslog.component';
+import { AdminslogComponent } from './private/adminslog/adminslog.component';
+import { UserlogComponent } from './private/userlog/userlog.component';
 export function getConfig(config:Config){
   return () => config.load()
 }
@@ -40,7 +43,7 @@ export function getAuth(config:Config){
 }
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgbModule, appRouting ],
-  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent, NotFoundComponent, ProfileComponent, DailyquotaComponent, RoomstypeComponent, RoomsquotaComponent, BookingsComponent, GroupbookingsComponent, TransactionsComponent, UsersComponent, AdminsComponent, SettingsComponent, GlobalsComponent ],
+  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent, NotFoundComponent, ProfileComponent, DailyquotaComponent, RoomstypeComponent, RoomsquotaComponent, BookingsComponent, GroupbookingsComponent, TransactionsComponent, UsersComponent, AdminsComponent, SettingsComponent, GlobalsComponent, UserslogComponent, AdminslogComponent, UserlogComponent ],
   providers: [ 
     Config, Apps, TitleService,
     AuthService,
