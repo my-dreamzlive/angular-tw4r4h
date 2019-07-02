@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as $ from 'jquery';
 import { Apps } from './../../app.apps';
 @Component({
   selector: 'app-navigation',
@@ -8,9 +8,10 @@ import { Apps } from './../../app.apps';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private app: Apps) { }
+  constructor(public app: Apps) { }
 
   ngOnInit() {
+   
   }
 
 }

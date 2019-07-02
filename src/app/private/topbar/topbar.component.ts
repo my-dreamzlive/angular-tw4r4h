@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Apps } from './../../app.apps';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -7,7 +8,7 @@ import { Apps } from './../../app.apps';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor(private app: Apps) { }
+  constructor(public app: Apps) { }
 
   ngOnInit() {
   }

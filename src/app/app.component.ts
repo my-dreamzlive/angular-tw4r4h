@@ -1,6 +1,6 @@
 import { Component, Inject, Renderer2  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-
+import * as $ from 'jquery';
 import { Apps } from './app.apps';
 import { TitleService } from './title.service';
 import { RouterModule, Routes, Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -19,7 +19,10 @@ export class AppComponent  {
   ngOnInit(): void {
     this.titleService.boot();
     this.renderer.setAttribute(this.document.body,'id','page-top');
-
+    let script = this.renderer.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
+    this.renderer.appendChild(this.document.body, script);
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(event => {
