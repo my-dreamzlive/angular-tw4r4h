@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Renderer2  } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { Apps } from './app.apps';
 import { TitleService } from './title.service';
 import { RouterModule, Routes, Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -11,11 +13,13 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent  {
   App;
-  constructor(public Apps: Apps, private titleService: TitleService){
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, public Apps: Apps, private titleService: TitleService){
     this.App = Apps;
   }
   ngOnInit(): void {
     this.titleService.boot();
+    this.renderer.setAttribute(this.document.body,'id','page-top');
+
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(event => {
