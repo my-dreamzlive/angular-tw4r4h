@@ -7,11 +7,13 @@ import { Apps } from './../../app.apps';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  navigator;
   constructor(public app: Apps) { }
 
   ngOnInit() {
-   
+   this.navigator = [
+     {"order":"1","id":"dashboard","name":"Dashboard","link":[''],"icon":"fas fa-fw fa-tachometer-alt"}
+   ]
   }
 
 }
