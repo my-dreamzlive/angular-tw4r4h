@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { NotFoundComponent } from './private/not-found/not-found.component';
+
+import { ProfileComponent } from './private/profile/profile.component';
 import { 
   AuthGuardService as AuthGuard 
 } from './auth-guard.service';
@@ -19,6 +21,13 @@ export let appRoutes: Routes = [
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always',
     data: { title: 'Dashboard'}
+  },
+  { 
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always',
+    data: { title: 'Profile'}
   },
   { 
     path:'notfound',

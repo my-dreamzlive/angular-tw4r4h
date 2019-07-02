@@ -19,3 +19,18 @@ aside ul li a{
   display:block;
    padding:.5em;
 }
+.sidebar-dark .nav-item .nav-link,.sidebar-dark .nav-item .nav-link i{
+  color:#fff;
+  font-weight: 700;
+}
+.sidebar .nav-item.active .nav-link {
+    font-weight: 700;
+    background: #ed8151;
+}
+.sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover, .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i{
+  background: #f6c23e;
+  color:#fff;
+}
+.sidebar .nav-item .collapse .collapse-inner, .sidebar .nav-item .collapsing .collapse-inner{
+  margin: 1rem 0 ;
+}

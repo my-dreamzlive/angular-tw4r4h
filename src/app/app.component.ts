@@ -40,11 +40,7 @@ export class AppComponent  {
     ).subscribe(event => {
       });
 
-      const navigated$ = this.App.router.events.map(e => e instanceof NavigationEnd);
-
-    navigated$.subscribe(res => {
-      
-    });
+    
   }
 
 }

@@ -1,6 +1,5 @@
 
 import { Injectable, NgModule, ModuleWithProviders } from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
 
 import { RouterModule, Routes, Router, ActivatedRoute, NavigationStart, NavigationEnd, ParamMap } from '@angular/router';

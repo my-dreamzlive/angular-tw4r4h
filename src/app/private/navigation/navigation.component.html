@@ -11,62 +11,24 @@
       
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-      <div *ngFor="let navigation of navigator">
+      <div *ngFor="let nav of navigator">
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="" [routerLink]="['']">
-          <i [class]=""></i>
-          <span>Dashboard</span></a>
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" attr.data-target="#{{nav.id}}" [routerLink]="nav.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-expanded="true" attr.aria-controls="{{nav.id}}">
+          <i [class]="nav.icon"></i>
+          <span>{{ nav.name }}</span></a>
+          <div id="{{nav.id}}" *ngIf="nav.sub" class="collapse" attr.aria-labelledby="heading{{nav.id}}" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">{{nav.sub.name}}</h6>
+              <a *ngFor="let item of nav.sub.items" class="collapse-item" [routerLink]="item.link"><i *ngIf="item.icon" [class]="item.icon"></i> {{item.name}}</a>
+            </div>
+          </div>
       </li>
       
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       </div>
-      <li class="nav-item">
-        
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-square"></i>
-          <span>Rooms</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Rooms &amp; Quota Setup</h6>
-            <a class="collapse-item" >Setup Daily Quota</a>
-            <a class="collapse-item" >Rooms Type</a>
-            <a class="collapse-item" >Rooms Quota</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
       
-      <hr class="sidebar-divider my-0">
-      <li class="nav-item">
-        
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Individual</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bookings</h6>
-            <a class="collapse-item" >Transactions</a>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item">
-        
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Group</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bookings</h6>
-            <a class="collapse-item" >Transactions</a>
-          </div>
-        </div>
-      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

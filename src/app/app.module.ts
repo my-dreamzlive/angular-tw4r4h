@@ -2,6 +2,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
+import * as $ from 'jquery';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
@@ -20,6 +21,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './private/navigation/navigation.component';
 import { TopbarComponent } from './private/topbar/topbar.component';
 import { NotFoundComponent } from './private/not-found/not-found.component';
+import { ProfileComponent } from './private/profile/profile.component';
+import { DailyquotaComponent } from './private/rooms/dailyquota/dailyquota.component';
+import { RoomstypeComponent } from './private/rooms/roomstype/roomstype.component';
+import { RoomsquotaComponent } from './private/rooms/roomsquota/roomsquota.component';
+import { BookingsComponent } from './private/bookings/bookings/bookings.component';
+import { GroupbookingsComponent } from './private/bookings/groupbookings/groupbookings.component';
+import { TransactionsComponent } from './private/transactions/transactions.component';
+import { UsersComponent } from './private/users/users.component';
+import { AdminsComponent } from './private/admins/admins.component';
+import { SettingsComponent } from './private/settings/settings.component';
+import { GlobalsComponent } from './private/globals/globals.component';
 export function getConfig(config:Config){
   return () => config.load()
 }
@@ -28,7 +40,7 @@ export function getAuth(config:Config){
 }
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgbModule, appRouting ],
-  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent, NotFoundComponent ],
+  declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent, NotFoundComponent, ProfileComponent, DailyquotaComponent, RoomstypeComponent, RoomsquotaComponent, BookingsComponent, GroupbookingsComponent, TransactionsComponent, UsersComponent, AdminsComponent, SettingsComponent, GlobalsComponent ],
   providers: [ 
     Config, Apps, TitleService,
     AuthService,
