@@ -24,7 +24,7 @@ export class AppComponent  {
   ngOnInit(): void {
     this.titleService.boot();
     this.renderer.setAttribute(this.document.body,'id','page-top');
-    // this.addScript('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+    this.addScript('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
     this.addScript('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js');
     this.addScript('https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js');
     this.App.router.events.pipe(
