@@ -60,11 +60,16 @@ Auth(){
   return new Promise((resolve, reject)=>
   {
      let rtimer = setInterval(()=>{
-       this.getResponse("master::check::login").subscribe(res => {
-        this.Authenticate = res;
-        
-        resolve();
-      });
+       if(typeof(this._config)!=='undefined'){
+          this.getResponse("master::check::login").subscribe(res => {
+            this.Authenticate = res;
+            if(typeof(res)!=='undefined'){
+                clearInterval(rtimer);
+            }
+            resolve();
+          });
+       }
+       
      },1000);
      
    });
