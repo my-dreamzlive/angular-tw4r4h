@@ -31,8 +31,7 @@ export class AppComponent  {
     this.addScript([
       "https://code.jquery.com/jquery-3.3.1.slim.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-      "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js",
-      "assets/admin.js"
+      "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
     ]);
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
