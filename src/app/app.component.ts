@@ -16,17 +16,24 @@ export class AppComponent  {
     this.App = Apps;
   }
   addScript(src){
-    let script = this.renderer.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    this.renderer.appendChild(this.document.body, script);
+    let script;
+    Object.entries(src).forEach((sc) => {
+      script = this.renderer.createElement('script');
+      script.type = 'text/javascript';
+      script.src = sc[1];
+      this.renderer.appendChild(this.document.body, script);
+      script = null;
+    });
   }
   ngOnInit(): void {
     this.titleService.boot();
     this.renderer.setAttribute(this.document.body,'id','page-top');
-    this.addScript('https://code.jquery.com/jquery-3.3.1.slim.min.js');
-    this.addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js');
-    this.addScript('https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js');
+    this.addScript([
+      "https://code.jquery.com/jquery-3.3.1.slim.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+      "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js",
+      "assets/admin.js"
+    ]);
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(event => {
