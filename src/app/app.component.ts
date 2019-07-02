@@ -4,13 +4,14 @@ import { Apps } from './app.apps';
 import { TitleService } from './title.service';
 import { RouterModule, Routes, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import * as $ from 'jquery';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+  $: any;
   App;
   constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, public Apps: Apps, private titleService: TitleService){
     this.App = Apps;
