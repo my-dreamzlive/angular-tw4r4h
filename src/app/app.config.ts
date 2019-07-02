@@ -22,6 +22,7 @@ load() {
    this.http.get('../assets/env.json')
    .map(res => res)
    .subscribe((env_data: Object) => {
+     
      this._env = env_data;
      if(typeof(env_data['env'])=='string'){
       this.http.get('../assets/' + env_data['env'] + '.json')
@@ -58,13 +59,14 @@ load() {
 Auth(){
   return new Promise((resolve, reject)=>
   {
-     setTimeout(()=>{
+     let rtimer = setInterval(()=>{
+       this.getResponse("master::check::login").subscribe(res => {
+        this.Authenticate = res;
         
-          this.getResponse("master::check::login").subscribe(res => {
-            this.Authenticate = res;
-            resolve();
-          });
-       }, 3000);
+        resolve();
+      });
+     },1000);
+     
    });
 }
 getResponse(action, params: any = null) {
