@@ -24,9 +24,9 @@ export class AppComponent  {
   ngOnInit(): void {
     this.titleService.boot();
     this.renderer.setAttribute(this.document.body,'id','page-top');
-    this.addScript('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
-    this.addScript('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js');
-    this.addScript('https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js');
+    this.addScript('https://code.jquery.com/jquery-3.3.1.slim.min.js');
+    this.addScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js');
+    this.addScript('https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js');
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(event => {
