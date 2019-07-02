@@ -27,7 +27,7 @@ export class Apps {
   httpRequest = new HttpParams();
   login: any;
   view: any;
-  user;
+  user: any;
   storage = window.localStorage;
   constructor(public config: Config, private http: HttpClient,  public router: Router, public route: ActivatedRoute, private titleService: Title){
     

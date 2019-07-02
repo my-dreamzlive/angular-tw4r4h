@@ -7,10 +7,11 @@ import * as $ from 'jquery';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-
+  name = 'Unknown';
   constructor(public app: Apps) { }
 
   ngOnInit() {
+    this.name = typeof(this.app.user.profile.name) !== 'undefined' ? this.app.user.profile.name : this.name;
   }
 
 }
