@@ -66,7 +66,7 @@
                         Please Select Quota Type
                       </div>
                       <div class="text-center" *ngIf="serverresp">
-                        <div [innerHTML]="dailyquotalist ? 'Selected Quota: ' + selectedquota.typename + ' | From: ' + app.ngbdt2ymd(fromdate) + '| To: ' + app.ngbdt2ymd(todate) + '<hr />' : 'Click on Find button'">
+                        <div [innerHTML]="dailyquotalist ? 'Selected Quota: ' + selectedquota.typename + ' | From: ' + app.ngbdt2ymd(fromdate) + ' | To: ' + app.ngbdt2ymd(todate) + '<hr />' : 'Click on Find button'">
                           
                         </div>
                         <div class="no-result" *ngIf="dailyquotalist.length == 0">
@@ -75,23 +75,26 @@
                           </div>
                         </div>
                         <div class="result table-responsive" *ngIf="dailyquotalist.length > 0">
-                          <table class="table table-hover table-sm">
+                          <div class="display-5 text-center">
+                            {{dailyquotalist.length}} Records Found
+                          </div>
+                          <table mdbTable class="table table-hover table-sm">
                               <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th>Quota Date</th>
-                                  <th>Room</th>
+                                  <th >#</th>
+                                  <th [mdbTableSort]="dailyquotalist" class="cursor-pointer" sortBy="qdate">Quota Date <i class="fa fa-sort"></i></th>
+                                  <th [mdbTableSort]="dailyquotalist" class="cursor-pointer" sortBy="roomtype">Room <i class="fa fa-sort"></i></th>
                                   <th>Available</th>
                                   <th>Action</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr *ngFor="let quotalist of dailyquotalist; let i = index">
-                                  <td>{{i + 1}}</td>
+                                  <th scope="row">{{i + 1}}</th>
                                   <td>{{quotalist.qdate}}</td>
                                   <td>{{quotalist.roomtype}}</td>
                                   <td>{{quotalist.available}}</td>
-                                  <td><a>Edit</a> | <a>Delete</a></td>
+                                  <td><a class="cursor-pointer" >Edit</a> | <a class="cursor-pointer" >Delete</a></td>
                                 </tr>
                               </tbody>
                           </table>

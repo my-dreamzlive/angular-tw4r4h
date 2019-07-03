@@ -2,7 +2,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { WavesModule, TableModule, IconsModule } from 'angular-bootstrap-md';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Apps } from './app.apps';
@@ -40,7 +40,7 @@ export function getAuth(config:Config){
   return () => config.Auth();
 }
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgbModule, appRouting ],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgbModule, appRouting, WavesModule, TableModule, IconsModule ],
   declarations: [ AppComponent, LoginComponent, LoginTemplate, LoginResetComponent, DashboardComponent, NavigationComponent, TopbarComponent, NotFoundComponent, ProfileComponent, DailyquotaComponent, RoomstypeComponent, RoomsquotaComponent, BookingsComponent, GroupbookingsComponent, TransactionsComponent, UsersComponent, AdminsComponent, SettingsComponent, GlobalsComponent, UserslogComponent, AdminslogComponent, UserlogComponent ],
   providers: [ 
     Config, Apps, TitleService,
