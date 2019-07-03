@@ -46,7 +46,18 @@ export class Apps {
         this.login = false;
     }
   }
-  
+  ngbdt2dt(ngbdt){
+    return new Date(ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day);
+  }
+  dt2ngbdt(dt){
+    return {'year':dt.getFullYear(),'month':dt.getMonth(),'day':dt.getDay()};
+  }
+  dt2ymd(dt){
+    return dt.getFullYear() + '-' + dt.getMonth() + '-' + dt.getDay();
+  }
+  ngbdt2ymd(ngbdt){
+    return ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day;
+  }
   getResponse(action, params: any = null) {
     let req = this.httpRequest;
     

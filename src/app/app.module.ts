@@ -1,8 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
-import * as $ from 'jquery';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';

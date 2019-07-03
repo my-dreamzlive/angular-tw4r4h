@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-md-4 col-12">
                         <div class="form-group">
-                          <select class="form-control" [(ngModel)]="selectedquota" (ngModelChange)="getQuota()">
+                          <select class="form-control" [(ngModel)]="selectedquotaid" (ngModelChange)="getQuota($event)">
                               <option [ngValue]="0">Select Quota</option>
                               <option *ngFor="let quota of quotatype" [ngValue]="quota.typeid"> 
                                 {{quota.typename}}
@@ -38,7 +38,7 @@
                           <div class="input-group-prepend">
                             <div class="input-group-text">Optional</div>
                           </div>
-                          <input type="text" class="form-control" placeholder="From (Default: Today)" [(ngModel)]="fromdate" #ctrl="ngModel" (ngModelChange)="getQuota()">
+                          <input type="text" class="form-control" placeholder="From (Default: Today)" [(ngModel)]="fromdate" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" (ngModelChange)="getQuota()">
                         </div>
                       </div>
                     </div>
@@ -48,9 +48,15 @@
                           <div class="input-group-prepend">
                             <div class="input-group-text">Optional</div>
                           </div>
-                          <input type="text" class="form-control datepicker" placeholder="To (Default: Today + 30 Days)" [(ngModel)]="todate" (ngModelChange)="getQuota()" >
+                          <input type="text" class="form-control datepicker" placeholder="To (Default: Today + 30 Days)" [(ngModel)]="todate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" (ngModelChange)="getQuota()" >
                         </div>
                       </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                      <button class="btn btn-md btn-success" (click)="getResult()">Find</button>
+                    </div>
+                    <div class="col-md-6 col-6 text-right">
+                      <button class="btn btn-md btn-info" (click)="resetQuota()">Default</button>
                     </div>
                   </div>
                   <hr />
@@ -60,7 +66,12 @@
                         Please Select Quota Type
                       </div>
                       <div class="text-center" *ngIf="serverresp">
-                        Selected Quota: {{selectedquota}}
+                        <div [innerHTML]="dailyquotalist ? 'Selected Quota: ' + selectedquota.typename + ' | From: ' + app.ngbdt2ymd(fromdate) + '| To: ' + app.ngbdt2ymd(todate) + '<hr />' : 'Click on Find button'">
+                          
+                        </div>
+                        <div class="result" *ngIf="dailyquotalist">
+                          
+                        </div>
                       </div>
                     </div>
                   </div>
