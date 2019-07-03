@@ -24,8 +24,11 @@
                   <div class="row">
                     <div class="col-md-4 col-12">
                         <div class="form-group">
-                          <select class="form-control">
-                              <option [value]="">Select Quota</option>
+                          <select class="form-control" [(ngModel)]="selectedquota" (ngModelChange)="getQuota()">
+                              <option [ngValue]="0">Select Quota</option>
+                              <option *ngFor="let quota of quotatype" [ngValue]="quota.typeid"> 
+                                {{quota.typename}}
+                              </option>
                           </select>
                         </div>
                     </div>
@@ -35,7 +38,7 @@
                           <div class="input-group-prepend">
                             <div class="input-group-text">Optional</div>
                           </div>
-                          <input type="text" class="form-control" id="daterange" placeholder="From (Default: Today)">
+                          <input type="text" class="form-control" placeholder="From (Default: Today)" [(ngModel)]="fromdate" #ctrl="ngModel" (ngModelChange)="getQuota()">
                         </div>
                       </div>
                     </div>
@@ -45,16 +48,22 @@
                           <div class="input-group-prepend">
                             <div class="input-group-text">Optional</div>
                           </div>
-                          <input type="text" class="form-control" id="daterange" placeholder="To (Default: Today + 30 Days)">
+                          <input type="text" class="form-control datepicker" placeholder="To (Default: Today + 30 Days)" [(ngModel)]="todate" (ngModelChange)="getQuota()" >
                         </div>
                       </div>
                     </div>
                   </div>
-                  
-                  
-                  <p>
-                    dashboard works!
-                  </p>
+                  <hr />
+                  <div class="row">
+                    <div class="col-12 align-self-center">
+                      <div class="text-center" *ngIf="!serverresp">
+                        Please Select Quota Type
+                      </div>
+                      <div class="text-center" *ngIf="serverresp">
+                        Selected Quota: {{selectedquota}}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
