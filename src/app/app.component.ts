@@ -30,11 +30,11 @@ export class AppComponent  {
     this.titleService.boot();
     this.renderer.setAttribute(this.document.body,'id','page-top');
     this.addScript([
-      "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-      "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js",
-      "assets/admin.js"
+      
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+        "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js",
+       "assets/admin.js"
     ]);
     this.App.router.events.pipe(
       filter(event => event instanceof NavigationStart)
