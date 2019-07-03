@@ -50,10 +50,10 @@ export class Apps {
     return new Date(ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day);
   }
   dt2ngbdt(dt){
-    return {'year':dt.getFullYear(),'month':dt.getMonth(),'day':dt.getDay()};
+    return {'year':dt.getFullYear(),'month':(dt.getMonth()+1),'day':dt.getDay()};
   }
   dt2ymd(dt){
-    return dt.getFullYear() + '-' + dt.getMonth() + '-' + dt.getDay();
+    return dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDay();
   }
   ngbdt2ymd(ngbdt){
     return ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day;
