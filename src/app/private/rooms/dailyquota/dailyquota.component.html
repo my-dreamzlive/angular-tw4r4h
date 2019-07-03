@@ -69,8 +69,32 @@
                         <div [innerHTML]="dailyquotalist ? 'Selected Quota: ' + selectedquota.typename + ' | From: ' + app.ngbdt2ymd(fromdate) + '| To: ' + app.ngbdt2ymd(todate) + '<hr />' : 'Click on Find button'">
                           
                         </div>
-                        <div class="result" *ngIf="dailyquotalist">
-                          
+                        <div class="no-result" *ngIf="dailyquotalist.length == 0">
+                          <div class="display-4 text-center">
+                            No Record Available
+                          </div>
+                        </div>
+                        <div class="result table-responsive" *ngIf="dailyquotalist.length > 0">
+                          <table class="table table-hover table-sm">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Quota Date</th>
+                                  <th>Room</th>
+                                  <th>Available</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let quotalist of dailyquotalist; let i = index">
+                                  <td>{{i + 1}}</td>
+                                  <td>{{quotalist.qdate}}</td>
+                                  <td>{{quotalist.roomtype}}</td>
+                                  <td>{{quotalist.available}}</td>
+                                  <td><a>Edit</a> | <a>Delete</a></td>
+                                </tr>
+                              </tbody>
+                          </table>
                         </div>
                       </div>
                     </div>

@@ -23,7 +23,7 @@ export class DailyquotaComponent implements OnInit {
     //this.app.options = {headers: this.app.headers, responseType:'text'};
     
     let httpResp = new Promise((resolve)=>{
-      this.app.getResponse("master::check::dquota").subscribe((res)=>{
+      this.app.getResponse("master::check::quota").subscribe((res)=>{
         
         resolve(res);
       });
