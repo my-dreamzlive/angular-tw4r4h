@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Apps } from './../../app.apps';
-import * as $ from 'jquery';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
