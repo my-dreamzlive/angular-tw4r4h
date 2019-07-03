@@ -4578,6 +4578,8 @@ input[type="button"].btn-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position:fixed;
+  z-index:9;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -10694,7 +10696,9 @@ a:focus {
 
 #wrapper #content-wrapper {
   background-color: #f8f9fc;
-  width: 100%;
+  width: 86%;
+  position:absolute;
+  right:0;
   overflow-x: hidden;
 }
 
@@ -11227,7 +11231,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 6.5rem;
+  width: 16%;
   min-height: 100vh;
 }
 
@@ -11386,7 +11390,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 14rem !important;
+    width: 14% !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
