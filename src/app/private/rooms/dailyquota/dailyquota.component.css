@@ -28,3 +28,11 @@
   -o-animation: glowing 1s infinite;
   animation: glowing 1s infinite;
 }
+.delete-confirm{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background:#fff;
+}

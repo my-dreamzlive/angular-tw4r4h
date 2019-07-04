@@ -72,7 +72,7 @@
                       </div>
                       <div class="text-center" *ngIf="serverresp">
                         
-                        <div class="no-result" *ngIf="found == 1 && dailyquotalist.length == 0">
+                        <div class="no-result" *ngIf="found > 0 && dailyquotalist.length == 0">
                           <div class="display-4 text-center">
                             No Record Available
                             <hr />
@@ -99,7 +99,16 @@
                                   <td>{{quotalist.qdate}}</td>
                                   <td>{{quotalist.roomtype}}</td>
                                   <td>{{quotalist.available}}</td>
-                                  <td><a class="cursor-pointer" >Edit</a> | <a class="cursor-pointer" >Delete</a></td>
+                                  <td class="position-relative">
+                                    <a class="cursor-pointer" >Edit</a> | <a class="cursor-pointer" (click)="delete(i,quotalist.id)" >Delete</a>
+                                    <div class="delete-confirm bg-default" *ngIf="quotalist.delete">
+                                      <div class="row h-100">
+                                        <div class="col-12 align-self-center">
+                                          Are you sure? <a class="cursor-pointer badge badge-danger text-white" (click)="deleteItem(i,quotalist.id)">Yes</a> | <a class="cursor-pointer badge badge-success text-white" (click)="deleteCancel(i,quotalist.id)">No</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
                                 </tr>
                               </tbody>
                           </table>

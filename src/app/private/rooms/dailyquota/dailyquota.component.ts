@@ -19,6 +19,7 @@ export class DailyquotaComponent implements OnInit {
   find;
   found = -1;
   loading = false;
+  deleteConfirm = false;
   constructor(public app: Apps) { }
 
   ngOnInit() {
@@ -92,5 +93,17 @@ export class DailyquotaComponent implements OnInit {
         this.found = 0;
       }
   }
-
+  delete(i,item){
+    
+    this.dailyquotalist[i]['delete'] = item;
+    console.log(this.dailyquotalist);
+  }
+  deleteItem(i,item){
+    if(item  == this.dailyquotalist[i]['id']){
+      this.dailyquotalist.splice(i, 1);
+    }
+  }
+  deleteCancel(i,item){
+    delete this.dailyquotalist[i]['delete'];
+  }
 }
