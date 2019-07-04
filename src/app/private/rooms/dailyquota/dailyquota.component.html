@@ -36,7 +36,7 @@
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text">Optional</div>
+                            <div class="input-group-text">From&nbsp;<small> (optional)</small></div>
                           </div>
                           <input type="text" class="form-control" placeholder="From (Default: Today)" [(ngModel)]="fromdate" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" (ngModelChange)="getQuota()">
                         </div>
@@ -46,14 +46,16 @@
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text">Optional</div>
+                            <div class="input-group-text">To&nbsp;<small> (optional)</small></div>
                           </div>
                           <input type="text" class="form-control datepicker" placeholder="To (Default: Today + 30 Days)" [(ngModel)]="todate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" (ngModelChange)="getQuota()" >
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div class="row" *ngIf="found == -1 && serverresp">
                     <div class="col-md-6 col-6">
-                      <button class="btn btn-md btn-success" (click)="getResult()">Find</button>
+                      <button class="" [class]="found == -1 && serverresp ? 'btn btn-md btn-success glowing' : 'btn btn-md btn-success'" (click)="getResult()">Find</button>
                     </div>
                     <div class="col-md-6 col-6 text-right">
                       <button class="btn btn-md btn-info" (click)="resetQuota()">Default</button>
@@ -63,20 +65,23 @@
                   <div class="row">
                     <div class="col-12 align-self-center">
                       <div class="text-center" *ngIf="!serverresp">
-                        Please Select Quota Type
+                        Please Select Quota<hr />
+                      </div>
+                      <div class="text-center text-danger display-4" *ngIf="loading">
+                        Please wait... Loading...<hr />
                       </div>
                       <div class="text-center" *ngIf="serverresp">
-                        <div [innerHTML]="dailyquotalist ? 'Selected Quota: ' + selectedquota.typename + ' | From: ' + app.ngbdt2ymd(fromdate) + ' | To: ' + app.ngbdt2ymd(todate) + '<hr />' : 'Click on Find button'">
-                          
-                        </div>
-                        <div class="no-result" *ngIf="dailyquotalist.length == 0">
+                        
+                        <div class="no-result" *ngIf="found == 1 && dailyquotalist.length == 0">
                           <div class="display-4 text-center">
                             No Record Available
+                            <hr />
                           </div>
                         </div>
                         <div class="result table-responsive" *ngIf="dailyquotalist.length > 0">
                           <div class="display-5 text-center">
                             {{dailyquotalist.length}} Records Found
+                            <hr />
                           </div>
                           <table mdbTable class="table table-hover table-sm">
                               <thead>

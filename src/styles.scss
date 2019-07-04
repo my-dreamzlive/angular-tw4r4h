@@ -4980,6 +4980,7 @@ input[type="button"].btn-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 0 0 1.5rem 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -10696,6 +10697,7 @@ a:focus {
   background-color: #f8f9fc;
   overflow-x: hidden;
   flex-grow:1;
+  flex:2;
 }
 
 #wrapper #content-wrapper #content {

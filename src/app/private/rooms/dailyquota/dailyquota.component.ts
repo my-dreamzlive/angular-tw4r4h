@@ -17,9 +17,12 @@ export class DailyquotaComponent implements OnInit {
   todate;
   serverresp = false;
   find;
+  found = -1;
+  loading = false;
   constructor(public app: Apps) { }
 
   ngOnInit() {
+    this.dailyquotalist = [];
     //this.app.options = {headers: this.app.headers, responseType:'text'};
     console.log(this.app.dt2ngbdt(this.today));
     let httpResp = new Promise((resolve)=>{
@@ -63,11 +66,14 @@ export class DailyquotaComponent implements OnInit {
     }
     fromdate = this.app.ngbdt2ymd(this.fromdate);
     todate = this.app.ngbdt2ymd(this.todate);
+    if(this.serverresp){this.found = -1;}
     this.find = {'quota':qid,'from':fromdate.toString(),'to':todate.toString()};
       
   }
 
   getResult(){
+    this.loading = true;
+    this.dailyquotalist = [];
     if(this.serverresp){
         let httpResp = new Promise((resolve)=>{
           this.app.getResponse("master::check::dailyquota",this.find).subscribe((res)=>{
@@ -77,10 +83,13 @@ export class DailyquotaComponent implements OnInit {
         });
         httpResp.then(res=>{
           this.dailyquotalist = res;
+          this.found = this.find.quota;
+          this.loading = false;
           console.log(res);
         });
       }else{
         this.dailyquotalist = false;
+        this.found = 0;
       }
   }
 
