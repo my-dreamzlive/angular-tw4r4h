@@ -24,6 +24,7 @@ export class DailyquotaComponent implements OnInit {
 
   ngOnInit() {
     this.dailyquotalist = [];
+    this.quotatype = [];
     //this.app.options = {headers: this.app.headers, responseType:'text'};
     console.log(this.app.dt2ngbdt(this.today));
     let httpResp = new Promise((resolve)=>{
@@ -81,9 +82,16 @@ export class DailyquotaComponent implements OnInit {
           });
         });
         httpResp.then(res=>{
-          this.dailyquotalist = res;
-          this.found = this.find.quota;
-          this.loading = false;
+          if(Array.isArray(res)){
+            this.dailyquotalist = res;
+            this.found = this.find.quota;
+            this.loading = false;
+          }else{
+            if(res['ERR']=='USER_NOT_LOGGEDIN'){this.app.doLogout();}
+            this.found = 0;
+            this.loading = false;
+          }
+          
         });
       }else{
         this.dailyquotalist = false;
