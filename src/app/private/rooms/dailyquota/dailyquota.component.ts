@@ -46,9 +46,7 @@ export class DailyquotaComponent implements OnInit {
     this.getQuota();
   }
   getQuota(ctrl = null){
-    if(ctrl !== null){
-      
-    }
+    
     let qid = this.selectedquotaid;
     let qindex = (parseInt(qid) - 1);
     this.selectedquota = this.quotatype[qindex];
@@ -86,7 +84,6 @@ export class DailyquotaComponent implements OnInit {
           this.dailyquotalist = res;
           this.found = this.find.quota;
           this.loading = false;
-          console.log(res);
         });
       }else{
         this.dailyquotalist = false;
@@ -94,9 +91,7 @@ export class DailyquotaComponent implements OnInit {
       }
   }
   delete(i,item){
-    
     this.dailyquotalist[i]['delete'] = item;
-    console.log(this.dailyquotalist);
   }
   deleteItem(i,item){
     if(item  == this.dailyquotalist[i]['id']){
