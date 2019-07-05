@@ -7,14 +7,17 @@ import { Apps } from './../../app.apps';
 })
 export class TopbarComponent implements OnInit {
   name = 'Loading';
+  timer;
   constructor(public app: Apps) { }
 
   ngOnInit() {
-    let timer = setTimeout(()=>{
-      this.name = typeof(this.app.user.profile.name) !== 'undefined' ? this.app.user.profile.name : this.name;
+    this.timer = setInterval(()=>{
       
-      
-    },2000);
+        this.name = this.app.user.profile.name;
+      if(this.name !== 'Loading' && this.name !== undefined){
+        //clearInterval(this.timer);
+      }
+    },1000);
     
   }
 
