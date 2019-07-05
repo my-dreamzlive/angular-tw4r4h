@@ -13,8 +13,11 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     
     this.timer = setInterval(()=>{
+      this.app.user = this.app.config.Authenticate;
       console.log(this.app.user.status);
+      
       if(this.app.user.status == "1"){
+        
         this.name = this.app.user.profile.name;
         clearInterval(this.timer);
       }

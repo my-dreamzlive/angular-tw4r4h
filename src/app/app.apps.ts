@@ -60,8 +60,7 @@ export class Apps {
   }
   getResponse(action, params: any = null) {
     let req = this.httpRequest;
-    
-      req = req.set('action', action).set('token',this.token);
+    req = req.set('action', action).set('token',this.token);
     
     if ( params !== null ) {
       Object.entries(params).forEach((param) => {
@@ -72,7 +71,21 @@ export class Apps {
     }
     return this.http.post(this.api.url, req, this.options).map(res => res);
   }
-
+  doAuth(){
+    return new Promise((resolve, reject)=>
+      {  
+      let rtimer = setInterval(()=>{
+        
+            this.getResponse("master::check::login").subscribe(res => {
+              this.config.Authenticate = res;
+              if(typeof(res)!=='undefined'){
+                  clearInterval(rtimer);
+              }
+              resolve();
+            });
+        },1000);
+      }
+  }
   doLogin(credentials){
    this.options = {headers: this.headers, responseType:'text'};
     return new Promise(resolve => this.getResponse('master::user::login',credentials).subscribe((res)=>{
