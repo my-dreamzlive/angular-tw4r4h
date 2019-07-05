@@ -28,14 +28,11 @@ export class DailyquotaComponent implements OnInit {
     //this.app.options = {headers: this.app.headers, responseType:'text'};
     console.log(this.app.dt2ngbdt(this.today));
     let httpResp = new Promise((resolve)=>{
-      this.app.getResponse("master::check::quota").subscribe((res)=>{
-        
-        resolve(res);
+      this.app.getResponse("master::check::quota").subscribe((res)=>{resolve(res);
       });
     });
     httpResp.then(res=>{
       this.quotatype = res;
-      
     });
   }
   resetQuota(){

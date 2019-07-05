@@ -71,21 +71,12 @@ export class Apps {
     }
     return this.http.post(this.api.url, req, this.options).map(res => res);
   }
-  doAuth(){
-    return new Promise((resolve, reject)=>
-      {  
-      let rtimer = setInterval(()=>{
-        
-            this.getResponse("master::check::login").subscribe(res => {
-              this.config.Authenticate = res;
-              if(typeof(res)!=='undefined'){
-                  clearInterval(rtimer);
-              }
-              resolve();
-            });
-        },1000);
-      }
+
+  reAuth(){
+    this.token = this.config.token;
+    this.user = this.config.Authenticate;
   }
+
   doLogin(credentials){
    this.options = {headers: this.headers, responseType:'text'};
     return new Promise(resolve => this.getResponse('master::user::login',credentials).subscribe((res)=>{

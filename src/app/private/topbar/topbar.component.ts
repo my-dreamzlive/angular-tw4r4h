@@ -13,7 +13,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     
     this.timer = setInterval(()=>{
-      this.app.user = this.app.config.Authenticate;
+      this.app.reAuth();
       console.log(this.app.user.status);
       
       if(this.app.user.status == "1"){
