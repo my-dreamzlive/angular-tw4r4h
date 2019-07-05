@@ -136,26 +136,7 @@
       <div class="modal-body">
         
             <div class="row">
-              <div class="col-md-4 col-12">
-                  <div class="form-group">
-                    <select class="form-control" [(ngModel)]="_new.roomid" (ngModelChange)="newQuota()">
-                        <option [ngValue]="0">Select Room</option>
-                        <option *ngFor="let room of rooms" [ngValue]="room.id"> 
-                          {{room.roomtype}}
-                        </option>
-                    </select>
-                  </div>
-              </div>
-              <div class="col-md-4 col-12">
-                  <div class="form-group">
-                    <select class="form-control" [(ngModel)]="_new.quota" (ngModelChange)="newQuota()">
-                        <option [ngValue]="0">Select Quota</option>
-                        <option *ngFor="let quota of quotatype" [ngValue]="quota.typeid"> 
-                          {{quota.typename}}
-                        </option>
-                    </select>
-                  </div>
-              </div>
+              
               <div class="col-md-6 col-12">
                 <div class="form-group">
                   <div class="input-group mb-2">
@@ -175,6 +156,31 @@
                     <input type="text" class="form-control" placeholder="End Date"  [minDate]="Today" [(ngModel)]="_new.to" ngbDatepicker #nd2="ngbDatepicker" (click)="nd2.toggle()" (ngModelChange)="newQuota()">
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="_new.roomid" (ngModelChange)="newQuota()">
+                        <option [ngValue]="0">Select Room</option>
+                        <option *ngFor="let room of rooms" [ngValue]="room.id"> 
+                          {{room.roomtype}}
+                        </option>
+                    </select>
+                  </div>
+              </div>
+              <div class="col-md-4 col-12">
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="_new.quota" (ngModelChange)="newQuota()">
+                        <option [ngValue]="0">Select Quota</option>
+                        <option *ngFor="let quota of quotatype" [ngValue]="quota.typeid"> 
+                          {{quota.typename}}
+                        </option>
+                    </select>
+                  </div>
+              </div>
+              <div class="col-md-4 col-12">
+                  <div class="form-group">
+                    <input type="number" min="0" class="form-control" placeholder="Available Rooms"  [(ngModel)]="_new.available" (ngModelChange)="newQuota()">
+                  </div>
               </div>
             </div>
         
