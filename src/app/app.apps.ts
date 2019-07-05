@@ -64,7 +64,6 @@ export class Apps {
       req = req.set('action', action).set('token',this.token);
     
     if ( params !== null ) {
-
       Object.entries(params).forEach((param) => {
         if(typeof(param[0]) == 'string' && typeof(param[1])=='string'){
           req = req.set(param[0], param[1]);
