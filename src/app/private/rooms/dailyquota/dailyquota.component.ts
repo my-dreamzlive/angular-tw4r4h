@@ -28,6 +28,8 @@ export class DailyquotaComponent implements OnInit {
     this.dailyquotalist = [];
     this.quotatype = [];
     //this.app.options = {headers: this.app.headers, responseType:'text'};
+    this._new['roomid'] = 0;
+    this._new['quota'] = 0;
     this.quotalist();
     this.roomlist();
     
