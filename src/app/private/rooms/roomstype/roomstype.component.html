@@ -13,7 +13,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Rooms Type</h1>
-            
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm" data-toggle="modal" data-target="#newRoom"><i class="fas fa-square fa-sm text-white-50"></i> New Room</a>
           </div>
 
           <!-- Content Row -->
@@ -21,9 +21,30 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <p>
-                    dashboard works!
-                  </p>
+                  <table class="table table-hover table-md">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Type</th>
+                        <th>Detail</th>
+                        <th>Rent</th>
+                        <th>Available</th>
+                        <th>status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let room of rooms; let i = index;">
+                        <th>{{ i+1 }}</th>
+                        <td contenteditable>{{ room.roomcode }}</td>
+                        <td contenteditable>{{ room.roomtype }}</td>
+                        <td contenteditable>{{ room.detail }}</td>
+                        <td contenteditable>{{ room.rent }}</td>
+                        <td >{{ room.available }}</td>
+                        <td>{{ room.status }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -31,4 +52,56 @@
           </div>
         </div>   
       </div>
+</div>
+<div class="modal fade" id="newRoom" tabindex="-1" role="dialog" aria-labelledby="newRoomLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newRoomLabel">Add New Room</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+            <div class="row">
+              <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <input type="text" maxlength="100" class="form-control" placeholder="Room Type"  [(ngModel)]="_new.roomtype" (ngModelChange)="newRoom()">
+                  </div>
+              </div>
+              <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <textarea class="form-control" maxlength="400" placeholder="Room Detail"  [(ngModel)]="_new.detail" (ngModelChange)="newRoom()"></textarea>
+                  </div>
+              </div>
+              <div class="col-md-3 col-12">
+                  <div class="form-group">
+                    <input type="text" maxlength="10" class="form-control" placeholder="Room Code without space"  [(ngModel)]="_new.code" (ngModelChange)="newRoom()">
+                  </div>
+              </div>
+              <div class="col-md-3 col-12">
+                  <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Rent" step="any" [(ngModel)]="_new.rent" (ngModelChange)="newRoom()">
+                  </div>
+              </div>
+              <div class="col-md-3 col-12">
+                  <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Available Rooms"  [(ngModel)]="_new.available" (ngModelChange)="newRoom()">
+                  </div>
+              </div>
+              <div class="col-md-3 col-12">
+                  <div class="form-group">
+                    <input type="checkbox" min="0" class="form-control"  [(ngModel)]="_new.status" (ngModelChange)="newRoom()">
+                  </div>
+              </div>
+            </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info">Setup</button>
+      </div>
+    </div>
+  </div>
 </div>
