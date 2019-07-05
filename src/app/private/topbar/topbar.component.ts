@@ -11,9 +11,9 @@ export class TopbarComponent implements OnInit {
   constructor(public app: Apps) { }
 
   ngOnInit() {
-    console.log(this.app.user.status);
+    
     this.timer = setInterval(()=>{
-      if(typeof(this.app.user.status) !== undefined){
+      if(this.app.user.status == "1"){
         this.name = this.app.user.profile.name;
         clearInterval(this.timer);
       }
