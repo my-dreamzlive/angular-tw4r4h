@@ -14,7 +14,6 @@ export class TopbarComponent implements OnInit {
     
     this.timer = setInterval(()=>{
       this.app.reAuth();
-      console.log(this.app.user.status);
       
       if(this.app.user.status == "1"){
         

@@ -9,7 +9,7 @@ declare var $;
 export class DailyquotaComponent implements OnInit {
   dailyquota;
   dailyquotalist;
-  quotatype;
+  quotatype = [];
   today: Date = new Date();
   selectedquota = '';
   selectedquotaid = 0;
@@ -20,19 +20,36 @@ export class DailyquotaComponent implements OnInit {
   found = -1;
   loading = false;
   deleteConfirm = false;
+  _new = [];
+  rooms = [];
   constructor(public app: Apps) { }
 
   ngOnInit() {
     this.dailyquotalist = [];
     this.quotatype = [];
     //this.app.options = {headers: this.app.headers, responseType:'text'};
-    console.log(this.app.dt2ngbdt(this.today));
+    this.quotalist();
+    this.roomlist();
+    
+  }
+  quotalist(){
     let httpResp = new Promise((resolve)=>{
-      this.app.getResponse("master::check::quota").subscribe((res)=>{resolve(res);
+      this.app.getResponse("master::check::quota").subscribe((res)=>{
+        resolve(res);
       });
     });
-    httpResp.then(res=>{
+    httpResp.then((res: any)=>{
       this.quotatype = res;
+    });
+  }
+  roomlist(){
+    let httpResp = new Promise((resolve)=>{
+      this.app.getResponse("master::get::roomlist").subscribe((res)=>{
+        resolve(res);
+      });
+    });
+    httpResp.then((res: any)=>{
+      this.rooms = res;
     });
   }
   resetQuota(){
@@ -42,6 +59,9 @@ export class DailyquotaComponent implements OnInit {
     this.todate = todate.setDate(this.today.getDate() + 30);
     this.todate = this.app.dt2ngbdt(new Date(this.todate));
     this.getQuota();
+  }
+  newQuota(){
+    console.log(this._new);
   }
   getQuota(ctrl = null){
     
