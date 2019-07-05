@@ -15,7 +15,7 @@ export class TopbarComponent implements OnInit {
       
         this.name = this.app.user.profile.name;
       if(this.name !== 'Loading' && this.name !== undefined){
-        //clearInterval(this.timer);
+        clearInterval(this.timer);
       }
     },1000);
     
