@@ -86,7 +86,7 @@ export class Apps {
        
         this.storage.setItem('xtoken',res['xtoken']);
         this.config.xtoken = res['xtoken'];
-        this.navigate(['']);
+        window.location.reload();
       }
         resolve(res);
     }));
@@ -98,6 +98,21 @@ export class Apps {
     }else{
       return str;
     }
+  }
+  toCode(str){
+    return str.split(/[. //\-_]/).reduce((response,word)=> response+=word.slice(0,1),'').toUpperCase();
+  }
+  filterCode(str){
+    return str.match(/[A-Za-z0-9]/g).join('').substring(0, 10);
+  }
+  filterDigits(str){
+    return str.match(/\d/g).join('');
+  }
+  filterDec(str){
+    return str.match(/([0-9]+(\.[0-9]+)?)/g).join('');
+  }
+  filterCurrency(str){
+    return parseFloat(this.filterDec(str)).toFixed(2);
   }
   doLogout(){
     this.options = {headers: this.headers, responseType:'text'};

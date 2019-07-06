@@ -13,13 +13,15 @@ export class RoomstypeComponent implements OnInit {
     this.roomlist();
   }
   roomlist(){
+    
     let httpResp = new Promise((resolve)=>{
       this.app.getResponse("master::get::roomlist").subscribe((res)=>{
         resolve(res);
       });
     });
     httpResp.then((res: Response)=>{
-      res = this.app.toJSON(res);
+      //res = this.app.toJSON(res);
+      console.log(res);
       this.rooms = res;
     });
   }
@@ -27,7 +29,13 @@ export class RoomstypeComponent implements OnInit {
     this._new = [];
     
   }
+  changeRoom(){
+    console.log(this.rooms);
+  }
   newRoom(){
+    if(typeof(this._new.roomtype)!=='undefined'){
+      this._new.code = this.app.toCode(this._new.roomtype);
+    }
     console.log(this._new);
   }
 }
