@@ -110,7 +110,7 @@ export class RoomstypeComponent implements OnInit {
     if(confirm){
       
       let httpResp = new Promise((resolve)=>{
-        this.app.getResponse("master::delete::room", ).subscribe((res)=>{
+        this.app.getResponse("master::delete::room", this.rooms[i]).subscribe((res)=>{
           resolve(res);
         });
       });
@@ -125,7 +125,7 @@ export class RoomstypeComponent implements OnInit {
         
         setTimeout(()=>{
           this.newsaved = false;
-          // this.rooms.splice(i,1);
+          this.rooms.splice(i,1);
         },2000);
       });
     }
