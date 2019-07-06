@@ -36,11 +36,11 @@
                     <tbody>
                       <tr *ngFor="let room of rooms; let i = index;">
                         <th>{{ i+1 }}</th>
-                        <td contenteditable [textContent]="room.code" (blur)="room.code=app.filterCode($event.target.textContent); changeRoom();"></td>
-                        <td contenteditable [textContent]="room.type" (blur)="room.type=$event.target.textContent; changeRoom();"></td>
-                        <td contenteditable [textContent]="room.detail" (blur)="room.detail=$event.target.textContent; changeRoom();"></td>
-                        <td contenteditable [textContent]="room.rent" (blur)="room.rent=app.filterCurrency($event.target.textContent); changeRoom();"></td>
-                        <td contenteditable [textContent]="room.available" (blur)="room.available=app.filterDigits($event.target.textContent); changeRoom();"></td>
+                        <td contenteditable [textContent]="room.code" (change)="room.code=app.filterCode($event.target.textContent); changeRoom();"></td>
+                        <td contenteditable [textContent]="room.type" (change)="room.type=$event.target.textContent; changeRoom();"></td>
+                        <td contenteditable [textContent]="room.detail" (change)="room.detail=$event.target.textContent; changeRoom();"></td>
+                        <td contenteditable [textContent]="room.rent" (change)="room.rent=app.filterCurrency($event.target.textContent); changeRoom();"></td>
+                        <td contenteditable [textContent]="room.available" (change)="room.available=app.filterDigits($event.target.textContent); changeRoom();"></td>
                         <td >
                           <div class="material-switch">
                             <input id="roomswitch{{i}}" name="roomswitch{{i}}" type="checkbox"  [(ngModel)]="room.status"/>

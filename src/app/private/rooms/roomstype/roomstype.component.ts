@@ -9,6 +9,7 @@ import { Apps } from './../../../app.apps';
 export class RoomstypeComponent implements OnInit {
   _new: any;
   rooms: object = [];
+  changed = false;
   constructor(public app: Apps) {
     this.roomlist();
   }
@@ -30,6 +31,7 @@ export class RoomstypeComponent implements OnInit {
     
   }
   changeRoom(){
+    this.changed = true;
     console.log(this.rooms);
   }
   newRoom(){

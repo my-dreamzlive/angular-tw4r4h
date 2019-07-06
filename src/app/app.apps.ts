@@ -103,7 +103,7 @@ export class Apps {
     return str.split(/[. //\-_]/).reduce((response,word)=> response+=word.slice(0,1),'').toUpperCase();
   }
   filterCode(str){
-    return str.match(/[A-Za-z0-9]/g).join('').substring(0, 10);
+    return str.match(/[A-Za-z0-9]/g).join('').substring(0, 10).toUpperCase();
   }
   filterDigits(str){
     return str.match(/\d/g).join('');
