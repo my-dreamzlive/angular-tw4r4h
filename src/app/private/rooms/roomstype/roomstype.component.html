@@ -40,23 +40,28 @@
                         <th>{{ i+1 }}</th>
                         
                         <td>
-                            <input type="text" maxlength="100" [class]="room.type == '' ? 'form-control' : 'form-control input-invalid'" placeholder="Room Type"  [(ngModel)]="room.type" (ngModelChange)="changeRoom($event, i);">
+                            <input type="text" maxlength="100" [class]="room.code == '' ? 'form-control input-invalid' : 'form-control'" placeholder="Room Type"  [(ngModel)]="room.type" (ngModelChange)="changeRoom(i, $event);">
+                            <div class="badge badge-danger" *ngIf="room.type == ''">Room Type is required</div>
                         </td>
                         <td>
-                            <input type="text" maxlength="10" [class]="room.code == '' ? 'form-control' : 'form-control input-invalid'" placeholder="Room Code"  [(ngModel)]="room.code" (ngModelChange)="changeRoom($event, i);">
+                            <input type="text" maxlength="10" [class]="room.code == '' ? 'form-control input-invalid' : 'form-control'" placeholder="Room Code"  [(ngModel)]="room.code" (ngModelChange)="changeRoom(i, $event);">
+                            <div class="badge badge-danger" *ngIf="room.code == ''">Room Code is required</div>
                         </td>
                         <td>
-                            <textarea maxlength="400" [class]="room.detail == '' ? 'form-control' : 'form-control input-invalid'" placeholder="Detail"  [(ngModel)]="room.detail" (ngModelChange)="changeRoom($event, i);" rows="3"></textarea>
+                            <textarea maxlength="400" [class]="room.detail == '' ? 'form-control input-invalid' : 'form-control'" placeholder="Detail"  [(ngModel)]="room.detail" (ngModelChange)="changeRoom(i, $event);" rows="3"></textarea>
+                            <div class="badge badge-danger" *ngIf="room.detail == ''">Room Code is required</div>
                         </td>
                         <td>
-                            <input type="number" step="any" min="0" [class]="room.rent == null ? 'form-control' : 'form-control input-invalid'" placeholder="Rent"  [(ngModel)]="room.rent" (blur)="changeRoom($event, i);">
+                            <input type="number" step="any" min="0" [class]="room.rent == null ? 'form-control input-invalid' : 'form-control'" placeholder="Rent"  [(ngModel)]="room.rent" (blur)="changeRoom(i, $event);">
+                            <div class="badge badge-danger" *ngIf="room.rent == null">Rent must be numeric</div>
                         </td>
                         <td>
-                            <input type="number" step="1" min="0" [class]="room.available == null ? 'form-control' : 'form-control input-invalid'" placeholder="Available"  [(ngModel)]="room.available" (ngModelChange)="changeRoom($event, i);">
+                            <input type="number" step="1" min="0" [class]="room.available == null ? 'form-control input-invalid' : 'form-control'" placeholder="Available"  [(ngModel)]="room.available" (ngModelChange)="changeRoom(i, $event);">
+                            <div class="badge badge-danger" *ngIf="room.available == null">Available must be numeric</div>
                         </td>
                         <td>
                           <div class="material-switch">
-                            <input id="roomswitch{{i}}" name="roomswitch{{i}}" type="checkbox"  [(ngModel)]="room.status" (ngModelChange)="changeRoom($event, i);"/>
+                            <input id="roomswitch{{i}}" name="roomswitch{{i}}" type="checkbox"  [(ngModel)]="room.status" (ngModelChange)="changeRoom(i, $event);"/>
                             <label for="roomswitch{{i}}" class="badge-success"></label>
                           </div>
                         </td>
@@ -83,6 +88,23 @@
         </div>   
       </div>
 </div>
+<div class="notification-fullscreen blur-out" *ngIf="updated">
+  <div class="boss">
+    <div class="row boss-row">
+      <div class="col-sm-4 col-12">
+      </div>
+      <div class="col-sm-4 col-12 align-self-center text-center">
+        <h1>Changes made to </h1>
+        <hr />
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-info" *ngFor="let update of updated">{{ update }}</li>
+        </ul>
+      </div>
+      <div class="col-sm-4 col-12">
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="newRoom" tabindex="-1" role="dialog" aria-labelledby="newRoomLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -99,44 +121,49 @@
                   <div class="form-group">
                     <label>Room Type</label>
                     <input type="text" maxlength="100" class="form-control" placeholder="Room Type"  [(ngModel)]="_new.roomtype" (ngModelChange)="newRoom()">
+                    <div class="badge badge-danger" *ngIf="_new.roomtype == null || _new.roomtype == ''">Room Type is required</div>
                   </div>
               </div>
               <div class="col-md-12 col-12">
                   <div class="form-group">
                     <label>Room Detail</label>
                     <textarea class="form-control" maxlength="400" placeholder="Room Detail"  [(ngModel)]="_new.detail" (ngModelChange)="newRoom()"></textarea>
+                    <div class="badge badge-danger" *ngIf="_new.detail == null || _new.detail == ''">Room Detail is required</div>
                   </div>
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
                     <label>Room code</label>
-                    <input type="text" maxlength="10" class="form-control" placeholder="Room Code without space"  [(ngModel)]="_new.code" (ngModelChange)="newRoom()">
+                    <input type="text" maxlength="10" class="form-control" placeholder="Room Code without space"  [(ngModel)]="_new.roomcode" (ngModelChange)="newRoom()">
+                    <div class="badge badge-danger" *ngIf="_new.roomcode == null || _new.detail == ''">Room Code is required</div>
                   </div>
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
                     <label>Rent</label>
                     <input type="number" class="form-control" min="0" placeholder="Rent" step="any" [(ngModel)]="_new.rent" (ngModelChange)="newRoom()">
+                    <div class="badge badge-danger" *ngIf="_new.rent == null || _new.rent == ''">Room Rent is required</div>
                   </div>
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
                     <label>Available</label>
                     <input type="number" class="form-control" placeholder="Available Rooms"  [(ngModel)]="_new.available" (ngModelChange)="newRoom()">
+                    <div class="badge badge-danger" *ngIf="_new.available == null || _new.available == ''">Available rooms is required</div>
                   </div>
               </div>
               <div class="col-md-12 col-12">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" [(ngModel)]="_new.status" (ngModelChange)="newRoom()" />
-                    <label class="form-check-label">Enabled</label>
-                  </div>
+                <div class="material-switch">
+                  <input id="newroomswitch" name="newroomswitch" type="checkbox" [(ngModel)]="_new.status" (ngModelChange)="newRoom()" />
+                  <label for="newroomswitch" class="badge-success" data-toggle="tooltip" data-placement="top" title="Enable / Disable Room"></label>
+                </div>
               </div>
             </div>
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Setup</button>
+        <button type="button" class="btn btn-info" (click)="saveNew()">Save</button>
       </div>
     </div>
   </div>
