@@ -8,9 +8,9 @@ import { Apps } from './../../../app.apps';
 })
 export class RoomstypeComponent implements OnInit {
   _new: any;
-  rooms = [];
+  rooms: object = [];
   constructor(public app: Apps) {
-    
+    this.roomlist();
   }
   roomlist(){
     let httpResp = new Promise((resolve)=>{
@@ -18,13 +18,14 @@ export class RoomstypeComponent implements OnInit {
         resolve(res);
       });
     });
-    httpResp.then((res: any)=>{
+    httpResp.then((res: Response)=>{
+      res = this.app.toJSON(res);
       this.rooms = res;
     });
   }
   ngOnInit() {
     this._new = [];
-    this.roomlist();
+    
   }
   newRoom(){
     console.log(this._new);

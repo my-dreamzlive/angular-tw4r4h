@@ -36,12 +36,6 @@ export class AppComponent  {
         "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js",
        "assets/admin.js"
     ]);
-    this.App.router.events.pipe(
-      filter(event => event instanceof NavigationStart)
-    ).subscribe(event => {
-      });
-
-    
   }
 
 }

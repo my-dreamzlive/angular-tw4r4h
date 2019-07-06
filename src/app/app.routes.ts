@@ -101,7 +101,7 @@ export let appRoutes: Routes = [
     path: 'dailyquota',
     component: DailyquotaComponent,
     canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always',
+    
     data: { title: 'Daily Quota'}
   },
   { 

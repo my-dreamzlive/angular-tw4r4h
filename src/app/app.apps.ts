@@ -78,7 +78,7 @@ export class Apps {
   }
 
   doLogin(credentials){
-   this.options = {headers: this.headers, responseType:'text'};
+   // this.options = {headers: this.headers, responseType:'text'};
     return new Promise(resolve => this.getResponse('master::user::login',credentials).subscribe((res)=>{
       res = typeof(res) !== 'object' ? JSON.parse(res): res;
       
@@ -92,6 +92,13 @@ export class Apps {
     }));
 
   }
+  toJSON(str): object{
+    if(typeof(str)=='string'){
+      return JSON.parse(str);
+    }else{
+      return str;
+    }
+  }
   doLogout(){
     this.options = {headers: this.headers, responseType:'text'};
     return new Promise(resolve => this.getResponse('master::user::logout').subscribe((res)=>{
@@ -102,6 +109,7 @@ export class Apps {
         if (typeof(keys[0]) !== 'undefined' && ( keys[0] === 'RES' || keys[0] === 'INF')) {
           this.storage.removeItem('xtoken');
           delete this.config.xtoken;
+          this.config.Authenticate = {status:0};
           this.navigate(['/login']);
         }
         resolve(res);

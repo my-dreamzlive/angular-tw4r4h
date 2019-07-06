@@ -41,6 +41,7 @@ export class DailyquotaComponent implements OnInit {
       });
     });
     httpResp.then((res: any)=>{
+      res = this.app.toJSON(res);
       this.quotatype = res;
     });
   }
@@ -51,6 +52,7 @@ export class DailyquotaComponent implements OnInit {
       });
     });
     httpResp.then((res: any)=>{
+      res = this.app.toJSON(res);
       this.rooms = res;
     });
   }
