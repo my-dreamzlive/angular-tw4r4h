@@ -27,7 +27,7 @@
                         <th>#</th>
                         
                         <th>Type</th>
-                        <th>Code</th>
+                        <th>Unique Code <small>(For Group Booking)</small></th>
                         <th>Detail</th>
                         <th>Rent</th>
                         <th>Available</th>
@@ -40,19 +40,19 @@
                         <th>{{ i+1 }}</th>
                         
                         <td>
-                            <input type="text" maxlength="10" class="form-control" placeholder="Room Type"  [(ngModel)]="room.type" (ngModelChange)="changeRoom($event, i);">
+                            <input type="text" maxlength="100" class="form-control" placeholder="Room Type"  [(ngModel)]="room.type" (ngModelChange)="changeRoom($event, i);">
                         </td>
                         <td>
                             <input type="text" maxlength="10" class="form-control" placeholder="Room Code"  [(ngModel)]="room.code" (ngModelChange)="changeRoom($event, i);">
                         </td>
                         <td>
-                            <input type="text" maxlength="10" class="form-control" placeholder="Detail"  [(ngModel)]="room.detail" (ngModelChange)="changeRoom($event, i);" rows="3">
+                            <textarea maxlength="400" class="form-control" placeholder="Detail"  [(ngModel)]="room.detail" (ngModelChange)="changeRoom($event, i);" rows="3"></textarea>
                         </td>
                         <td>
-                            <input type="number" step="any" min="0" class="form-control" placeholder="Rent"  [(ngModel)]="room.rent" (ngModelChange)="changeRoom($event, i);">
+                            <input type="number" step="any" min="0" class="form-control" placeholder="Rent"  [(ngModel)]="room.rent" (blur)="changeRoom($event, i);">
                         </td>
                         <td>
-                            <input type="number" step="1" min="0" class="form-control" placeholder="Available"  [(ngModel)]="room.available" (blur)="changeRoom($event, i);">
+                            <input type="number" step="1" min="0" class="form-control" placeholder="Available"  [(ngModel)]="room.available" (ngModelChange)="changeRoom($event, i);">
                         </td>
                         <td>
                           <div class="material-switch">
