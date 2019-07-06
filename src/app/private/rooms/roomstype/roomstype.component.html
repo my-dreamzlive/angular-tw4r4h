@@ -25,31 +25,56 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Code</th>
+                        
                         <th>Type</th>
+                        <th>Code</th>
                         <th>Detail</th>
                         <th>Rent</th>
                         <th>Available</th>
                         <th>status</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let room of rooms; let i = index;">
                         <th>{{ i+1 }}</th>
-                        <td contenteditable [textContent]="room.code" (change)="room.code=app.filterCode($event.target.textContent); changeRoom();"></td>
-                        <td contenteditable [textContent]="room.type" (change)="room.type=$event.target.textContent; changeRoom();"></td>
-                        <td contenteditable [textContent]="room.detail" (change)="room.detail=$event.target.textContent; changeRoom();"></td>
-                        <td contenteditable [textContent]="room.rent" (change)="room.rent=app.filterCurrency($event.target.textContent); changeRoom();"></td>
-                        <td contenteditable [textContent]="room.available" (change)="room.available=app.filterDigits($event.target.textContent); changeRoom();"></td>
-                        <td >
+                        
+                        <td>
+                            <input type="text" maxlength="10" class="form-control" placeholder="Room Type"  [(ngModel)]="room.type" (ngModelChange)="changeRoom($event, i);">
+                        </td>
+                        <td>
+                            <input type="text" maxlength="10" class="form-control" placeholder="Room Code"  [(ngModel)]="room.code" (ngModelChange)="changeRoom($event, i);">
+                        </td>
+                        <td>
+                            <input type="text" maxlength="10" class="form-control" placeholder="Detail"  [(ngModel)]="room.detail" (ngModelChange)="changeRoom($event, i);" rows="3">
+                        </td>
+                        <td>
+                            <input type="number" step="any" min="0" class="form-control" placeholder="Rent"  [(ngModel)]="room.rent" (ngModelChange)="changeRoom($event, i);">
+                        </td>
+                        <td>
+                            <input type="number" step="1" min="0" class="form-control" placeholder="Available"  [(ngModel)]="room.available" (blur)="changeRoom($event, i);">
+                        </td>
+                        <td>
                           <div class="material-switch">
-                            <input id="roomswitch{{i}}" name="roomswitch{{i}}" type="checkbox"  [(ngModel)]="room.status"/>
+                            <input id="roomswitch{{i}}" name="roomswitch{{i}}" type="checkbox"  [(ngModel)]="room.status" (ngModelChange)="changeRoom($event, i);"/>
                             <label for="roomswitch{{i}}" class="badge-success"></label>
                           </div>
+                        </td>
+                        <td>
+                          <a class="cursor-pointer text-danger" (click)="deleteRoom(i)"><i class="fa fa-window-close"></i></a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="changed">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-right">
+                    <button class="btn btn-success glowing" (click)="saveChanges()">Save Changes</button>
+                  </div>
                 </div>
               </div>
             </div>

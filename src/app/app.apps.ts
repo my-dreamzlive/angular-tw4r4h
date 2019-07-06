@@ -109,6 +109,7 @@ export class Apps {
     return str.match(/\d/g).join('');
   }
   filterDec(str){
+    
     return str.match(/([0-9]+(\.[0-9]+)?)/g).join('');
   }
   filterCurrency(str){

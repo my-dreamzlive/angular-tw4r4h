@@ -30,14 +30,20 @@ export class RoomstypeComponent implements OnInit {
     this._new = [];
     
   }
-  changeRoom(){
+  changeRoom(val = null, i = null){
     this.changed = true;
-    console.log(this.rooms);
+    this.rooms[i]['code'] = this.app.filterCode(this.rooms[i]['code']);
+    this.rooms[i]['available'] = this.app.filterDigits(this.rooms[i]['available'].toString());
+    
+    console.log(this.rooms[i]);
   }
   newRoom(){
     if(typeof(this._new.roomtype)!=='undefined'){
       this._new.code = this.app.toCode(this._new.roomtype);
     }
     console.log(this._new);
+  }
+  saveChanges(){
+
   }
 }
