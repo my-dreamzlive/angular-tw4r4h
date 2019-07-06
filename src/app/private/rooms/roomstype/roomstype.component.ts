@@ -105,9 +105,29 @@ export class RoomstypeComponent implements OnInit {
     
   }
   deleteRoom(i){
+    //console.log(this.rooms[i]);
     let confirm = window.confirm('Are you sure to delete the room? It may affect booking data. You may disable instead of delete.');
     if(confirm){
-      this.rooms.splice(i,1);
+      
+      let httpResp = new Promise((resolve)=>{
+        this.app.getResponse("master::delete::room", ).subscribe((res)=>{
+          resolve(res);
+        });
+      });
+      httpResp.then((res: Response)=>{
+        //res = this.app.toJSON(res);
+        console.log(res);
+        this.newsaved = res;
+        let keys = Object.keys(res);
+        console.log(res[keys[0]]);
+        this.notification.respType = keys[0];
+        this.notification.resp = res[keys[0]];
+        
+        setTimeout(()=>{
+          this.newsaved = false;
+          // this.rooms.splice(i,1);
+        },2000);
+      });
     }
   }
   saveChanges(){
