@@ -162,7 +162,7 @@
                     <select class="form-control" [(ngModel)]="_new.roomid" (ngModelChange)="newQuota()">
                         <option [ngValue]="0">Select Room</option>
                         <option *ngFor="let room of rooms" [ngValue]="room.id"> 
-                          {{room.roomtype}}
+                          {{room.type}}
                         </option>
                     </select>
                   </div>
