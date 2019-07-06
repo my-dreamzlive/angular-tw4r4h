@@ -105,6 +105,20 @@
     </div>
   </div>
 </div>
+<div class="notification-fullscreen blur-out" *ngIf="newsaved">
+  <div class="boss">
+    <div class="row boss-row">
+      <div class="col-sm-4 col-12">
+      </div>
+      <div class="col-sm-4 col-12 align-self-center text-center">
+        <h1 [class]="notification.respType == 'RES' || notification.respType == 'INF' ? 'text-success' : 'text-danger'">{{notification.resp}}</h1>
+        
+      </div>
+      <div class="col-sm-4 col-12">
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="newRoom" tabindex="-1" role="dialog" aria-labelledby="newRoomLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -154,8 +168,8 @@
               </div>
               <div class="col-md-12 col-12">
                 <div class="material-switch">
-                  <input id="newroomswitch" name="newroomswitch" type="checkbox" [(ngModel)]="_new.status" (ngModelChange)="newRoom()" />
-                  <label for="newroomswitch" class="badge-success" data-toggle="tooltip" data-placement="top" title="Enable / Disable Room"></label>
+                  <input id="newroomswitch" name="newroomswitch" type="checkbox" [(ngModel)]="_new.status" (ngModelChange)="newRoom()"  data-toggle="tooltip" data-placement="top" title="Enable / Disable Room" />
+                  <label for="newroomswitch" class="badge-success"></label>
                 </div>
               </div>
             </div>

@@ -2,7 +2,7 @@
   "use strict"; // Start of use strict
    
    $('[data-toggle="tooltip"]').each(function(){
-     $(this)..tooltip();
+     $(this).tooltip();
    });
     
   // Toggle the side navigation

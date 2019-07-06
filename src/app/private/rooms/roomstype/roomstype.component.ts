@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Apps } from './../../../app.apps';
+declare var $ : any;
 @Component({
   selector: 'app-roomstype',
   templateUrl: './roomstype.component.html',
   styleUrls: ['./roomstype.component.css']
 })
+
 export class RoomstypeComponent implements OnInit {
+  
   _new: any = [];
   rooms: object = [];
   changed = false;
   changeData: any = [];
   updated;
+  newsaved: any;
+  notification: any;
   validnew = false;
   constructor(public app: Apps) {
     this.roomlist();
@@ -36,7 +40,8 @@ export class RoomstypeComponent implements OnInit {
     this._new.rent = '';
     this._new.available = '';
     this._new.status = false;
-
+    this.notification.respType = '';
+    this.notification.resp = '';
   }
   changeRoom(i = null, val = null){
     
@@ -84,7 +89,18 @@ export class RoomstypeComponent implements OnInit {
       httpResp.then((res: Response)=>{
         //res = this.app.toJSON(res);
         console.log(res);
-        
+        this.newsaved = res;
+        let keys = Object.keys(res);
+        console.log(res[keys[0]]);
+        this.notification.respType = keys[0];
+        this.notification.resp = res[keys[0]];
+        if(keys[0]=='RES'){
+            $('#newRoom').modal('hide');
+
+        }
+        setTimeout(()=>{
+          this.newsaved = false;
+        },2000);
       });
     }
     
