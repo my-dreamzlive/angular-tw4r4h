@@ -31,19 +31,6 @@ export class RoomstypeComponent implements OnInit {
     
   }
   changeRoom(val = null, i = null){
-    this.rooms[i]['invalid'] = [];
-    Object.entries(this.rooms[i]).forEach((param) => {
-      if(typeof(this.rooms[i][param[1]])==''){
-        this.rooms[i][param[0]] = null;
-        
-      }
-      if(this.rooms[i][param[0]] == null){
-        this.rooms[i]['invalid'].push(param[0]);
-      }
-    });
-    let nullcount = Object.values(this.rooms[i]).indexOf(null);
-    console.log(nullcount);
-    let okeys:any = ['id','code','type','detail','available','rent','status'];
     
       this.changed = true;
       this.rooms[i]['code'] = this.app.filterCode(this.rooms[i]['code'].toString());
