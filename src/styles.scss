@@ -19,7 +19,9 @@
 /* 				filter: blur(0); */
         }
 }
-
+.input-invalid{
+  border:1px solid #dc3545;
+}
 @-webkit-keyframes glowing {
   0% { background-color: #169b6b; -webkit-box-shadow: 0 0 3px #169b6b; }
   50% { background-color: #36b9cc; -webkit-box-shadow: 0 0 9px #36b9cc; }
