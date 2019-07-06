@@ -40,8 +40,7 @@ export class RoomstypeComponent implements OnInit {
     this._new.rent = '';
     this._new.available = '';
     this._new.status = false;
-    this.notification.respType = '';
-    this.notification.resp = '';
+    this.notification = [];
   }
   changeRoom(i = null, val = null){
     
@@ -96,7 +95,7 @@ export class RoomstypeComponent implements OnInit {
         this.notification.resp = res[keys[0]];
         if(keys[0]=='RES'){
             $('#newRoom').modal('hide');
-
+            this.roomlist();
         }
         setTimeout(()=>{
           this.newsaved = false;
