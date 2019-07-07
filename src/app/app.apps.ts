@@ -50,13 +50,42 @@ export class Apps {
     return new Date(ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day);
   }
   dt2ngbdt(dt){
-    return {'year':dt.getFullYear(),'month':(dt.getMonth()+1),'day':dt.getDay()};
+    return {'year':dt.getFullYear(),'month':(dt.getMonth()+1),'day':dt.getDate()};
   }
   dt2ymd(dt){
-    return dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDay();
+    return dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDate();
   }
   ngbdt2ymd(ngbdt){
     return ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day;
+  }
+  validngbt(v){
+    v = (v !== null) ? this.ngbdt2dt(v): null;
+    if((v instanceof Date)&&(!isNaN(v))){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  vartype(v){
+    if(typeof(v) == 'number' && parseFloat(v) == 0){
+      return 'zero';
+    }else if(typeof(v) == 'string' && v == ''){
+      return 'emptystring';
+    }else{
+      if(v instanceof Date){
+        return 'date';
+      }else if(this.validngbt(v)){
+        return 'ngdate';
+      }else if(v==null){
+        return 'null';
+      }else{
+        return typeof(v);
+      }
+    }
+  }
+  isEmpty(v){
+    let can = ['null','zero','undefined','emptystring'];
+    return can.indexOf(v) >= 0 ? true : false;
   }
   getResponse(action, params: any = null) {
     let req = this.httpRequest;

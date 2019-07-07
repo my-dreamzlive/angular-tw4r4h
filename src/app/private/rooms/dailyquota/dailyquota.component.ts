@@ -18,6 +18,7 @@ export class DailyquotaComponent implements OnInit {
   todate;
   serverresp = false;
   find;
+  valid;
   found = -1;
   loading = false;
   deleteConfirm = false;
@@ -30,15 +31,19 @@ export class DailyquotaComponent implements OnInit {
   ngOnInit() {
     this.dailyquotalist = [];
     this.quotatype = [];
-    //this.app.options = {headers: this.app.headers, responseType:'text'};
+    //
+    this._new['from'] = 0;
+    this._new['to'] = 0;
     this._new['roomid'] = 0;
     this._new['quota'] = 0;
+    this._new['available'] = 0;
     this.quotalist();
     
   }
   quotalist(){
+    
     let httpResp = new Promise((resolve)=>{
-      this.app.getResponse("master::check::quota").subscribe((res)=>{
+      this.app.getResponse("master::get::quota").subscribe((res)=>{
         resolve(res);
       });
     });
@@ -55,7 +60,6 @@ export class DailyquotaComponent implements OnInit {
     });
     httpResp.then((res: any)=>{
       res = this.app.toJSON(res);
-      console.log(res);
       this.rooms = res;
     });
   }
@@ -63,6 +67,7 @@ export class DailyquotaComponent implements OnInit {
     this.fromdate = this.app.dt2ngbdt(this.today);
     let todate;
     todate = new Date();
+    this.selectedroom = 0;
     this.todate = todate.setDate(this.today.getDate() + 30);
     this.todate = this.app.dt2ngbdt(new Date(this.todate));
     this.getQuota();
@@ -91,21 +96,23 @@ export class DailyquotaComponent implements OnInit {
     fromdate = this.app.ngbdt2ymd(this.fromdate);
     todate = this.app.ngbdt2ymd(this.todate);
     if(this.serverresp){this.found = -1;}
-    this.find = {'quota':qid,'from':fromdate.toString(),'to':todate.toString()};
+    this.find = {'quota':qid,'from':fromdate.toString(),'to':todate.toString(),'room':this.selectedroom};
       
   }
 
   getResult(){
     this.loading = true;
     this.dailyquotalist = [];
+    //this.app.options = {headers: this.app.headers, responseType:'text'};
     if(this.serverresp){
         let httpResp = new Promise((resolve)=>{
-          this.app.getResponse("master::check::dailyquota",this.find).subscribe((res)=>{
+          this.app.getResponse("master::get::dailyquota",this.find).subscribe((res)=>{
             
             resolve(res);
           });
         });
         httpResp.then(res=>{
+          
           if(Array.isArray(res)){
             this.dailyquotalist = res;
             this.found = this.find.quota;
@@ -121,6 +128,18 @@ export class DailyquotaComponent implements OnInit {
         this.dailyquotalist = false;
         this.found = 0;
       }
+  }
+  validate(){
+    let validate = [];
+    Object.entries(this._new).forEach((param)=>{
+      
+      validate[param[0]] = this.app.isEmpty(param[1]);
+      
+    });
+    console.log(validate);
+  }
+  setupQuota(){
+    console.log(this._new);
   }
   delete(i,item){
     this.dailyquotalist[i]['delete'] = item;

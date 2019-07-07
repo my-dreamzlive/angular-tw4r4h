@@ -41,7 +41,7 @@
                           </div>
                           <select class="form-control" [(ngModel)]="selectedroom" (ngModelChange)="getQuota($event)">
                               <option [ngValue]="0">All Rooms</option>
-                              <option *ngFor="let room of romms" [ngValue]="room.id"> 
+                              <option *ngFor="let room of rooms" [ngValue]="room.id"> 
                                 {{room.type}}
                               </option>
                           </select>
@@ -120,7 +120,7 @@
                                     <div class="delete-confirm bg-default" *ngIf="quotalist.delete">
                                       <div class="row h-100">
                                         <div class="col-12 align-self-center">
-                                          Are you sure? <a class="cursor-pointer badge badge-danger text-white" (click)="deleteItem(i,quotalist.id)">Yes</a> | <a class="cursor-pointer badge badge-success text-white" (click)="deleteCancel(i,quotalist.id)">No</a>
+                                          Are you sure to delete this record? <a class="cursor-pointer badge badge-danger text-white" (click)="deleteItem(i,quotalist.id)">Yes</a> | <a class="cursor-pointer badge badge-success text-white" (click)="deleteCancel(i,quotalist.id)">No</a>
                                         </div>
                                       </div>
                                     </div>
@@ -159,7 +159,8 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">From</div>
                     </div>
-                    <input type="text" class="form-control" placeholder="Start Date" [minDate]="app.dt2ngbdt(today)" [(ngModel)]="_new.from" ngbDatepicker #nd1="ngbDatepicker" (click)="nd1.toggle()" (ngModelChange)="newQuota()">
+                    <input type="text" class="form-control" placeholder="Start Date" [minDate]="app.dt2ngbdt(today)" ngbDatepicker #nd1="ngbDatepicker" (click)="nd1.toggle()" [(ngModel)]="_new.from"  (ngModelChange)="newQuota()" (blur)="validate()">
+
                   </div>
                 </div>
               </div>
@@ -169,13 +170,13 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">To</div>
                     </div>
-                    <input type="text" class="form-control" placeholder="End Date"  [minDate]="Today" [(ngModel)]="_new.to" ngbDatepicker #nd2="ngbDatepicker" (click)="nd2.toggle()" (ngModelChange)="newQuota()">
+                    <input type="text" class="form-control" placeholder="End Date"  [minDate]="Today" [(ngModel)]="_new.to" ngbDatepicker #nd2="ngbDatepicker" (click)="nd2.toggle()" (ngModelChange)="newQuota()" (blur)="validate()">
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
-                    <select class="form-control" [(ngModel)]="_new.roomid" (ngModelChange)="newQuota()">
+                    <select class="form-control" [(ngModel)]="_new.roomid" (ngModelChange)="newQuota()" (change)="validate()">
                         <option [ngValue]="0">Select Room</option>
                         <option *ngFor="let room of rooms" [ngValue]="room.id"> 
                           {{room.type}}
@@ -185,7 +186,7 @@
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
-                    <select class="form-control" [(ngModel)]="_new.quota" (ngModelChange)="newQuota()">
+                    <select class="form-control" [(ngModel)]="_new.quota" (ngModelChange)="newQuota()"  (change)="validate()">
                         <option [ngValue]="0">Select Quota</option>
                         <option *ngFor="let quota of quotatype" [ngValue]="quota.typeid"> 
                           {{quota.typename}}
@@ -195,7 +196,7 @@
               </div>
               <div class="col-md-4 col-12">
                   <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Available Rooms"  [(ngModel)]="_new.available" (ngModelChange)="newQuota()">
+                    <input type="number" min="0" class="form-control" placeholder="Available Rooms"  [(ngModel)]="_new.available" (ngModelChange)="newQuota()"  (change)="validate()">
                   </div>
               </div>
             </div>
@@ -203,7 +204,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Setup</button>
+        <button type="button" class="btn btn-info" (click)="setupQuota()">Setup</button>
       </div>
     </div>
   </div>
