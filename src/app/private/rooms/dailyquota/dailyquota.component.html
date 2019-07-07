@@ -22,7 +22,8 @@
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-4 col-12">
+                    
+                    <div class="col-md-6 col-12">
                         <div class="form-group">
                           <select class="form-control" [(ngModel)]="selectedquotaid" (ngModelChange)="getQuota($event)">
                               <option [ngValue]="0">Select Quota</option>
@@ -32,23 +33,38 @@
                           </select>
                         </div>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">Room Type <small>&nbsp;(optional)</small></div>
+                          </div>
+                          <select class="form-control" [(ngModel)]="selectedroom" (ngModelChange)="getQuota($event)">
+                              <option [ngValue]="0">All Rooms</option>
+                              <option *ngFor="let room of romms" [ngValue]="room.id"> 
+                                {{room.type}}
+                              </option>
+                          </select>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">From&nbsp;<small> (optional)</small></div>
                           </div>
-                          <input type="text" class="form-control" placeholder="From (Default: Today)" [(ngModel)]="fromdate" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" (ngModelChange)="getQuota()">
+                          <input type="text" class="form-control" placeholder="(Default: Today)" [(ngModel)]="fromdate" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" (ngModelChange)="getQuota()">
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-6 col-12">
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">To&nbsp;<small> (optional)</small></div>
                           </div>
-                          <input type="text" class="form-control datepicker" placeholder="To (Default: Today + 30 Days)" [(ngModel)]="todate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" (ngModelChange)="getQuota()" >
+                          <input type="text" class="form-control datepicker" placeholder="(Default: Today + 30 Days)" [(ngModel)]="todate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" (ngModelChange)="getQuota()" >
                         </div>
                       </div>
                     </div>

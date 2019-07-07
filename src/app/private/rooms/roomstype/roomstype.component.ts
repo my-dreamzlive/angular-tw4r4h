@@ -10,7 +10,7 @@ declare var $ : any;
 export class RoomstypeComponent implements OnInit {
   
   _new: any = [];
-  rooms: object = [];
+  rooms: any = [];
   changed = false;
   changeData: any = [];
   updated;

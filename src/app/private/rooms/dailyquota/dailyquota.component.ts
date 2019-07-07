@@ -12,6 +12,7 @@ export class DailyquotaComponent implements OnInit {
   quotatype = [];
   today: Date = new Date();
   selectedquota = '';
+  selectedroom = 0;
   selectedquotaid = 0;
   fromdate;
   todate;
@@ -21,8 +22,10 @@ export class DailyquotaComponent implements OnInit {
   loading = false;
   deleteConfirm = false;
   _new = [];
-  rooms = [];
-  constructor(public app: Apps) { }
+  rooms:any = [];
+  constructor(public app: Apps) { 
+    this.roomlist();
+  }
 
   ngOnInit() {
     this.dailyquotalist = [];
@@ -31,7 +34,6 @@ export class DailyquotaComponent implements OnInit {
     this._new['roomid'] = 0;
     this._new['quota'] = 0;
     this.quotalist();
-    this.roomlist();
     
   }
   quotalist(){
@@ -53,6 +55,7 @@ export class DailyquotaComponent implements OnInit {
     });
     httpResp.then((res: any)=>{
       res = this.app.toJSON(res);
+      console.log(res);
       this.rooms = res;
     });
   }
