@@ -73,6 +73,18 @@ export class Apps {
     });
     return responseType;
   }
+  resp(obj){
+    let response = [];
+    let i = 0;
+    Object.entries(obj).forEach((v)=>{
+      if(i == 0){
+        response.push(v[1]);
+      }else{
+        response.push(v[0],v[1]);
+      }
+    });
+    return response;
+  }
   validngbt(v){
     v = (v !== null) ? this.ngbdt2dt(v): null;
     if((v instanceof Date)&&(!isNaN(v))){

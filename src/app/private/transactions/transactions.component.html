@@ -25,7 +25,7 @@
                     <thead>
                       <tr>
                         <th>TransTime</th>
-                        <th>TransID</th>
+                        <th style="text-align:center;">TransID</th>
                         <th>PaymentID</th>
                         <th>Amount</th>
                         <th>Method</th>
@@ -36,9 +36,9 @@
                     <tbody>
                       <tr *ngFor="let trans of transactionlist">
                         <td>{{trans.pdate}}</td>
-                        <td>{{trans.transid}}</td>
-                        <td>{{trans.pyid}}</td>
-                        <td>{{trans.amount}}</td>
+                        <td>{{trans.transid ? trans.transid : 'NA'}}</td>
+                        <td>{{trans.pyid ? trans.transid : 'NA'}}</td>
+                        <td><i class="fa fa-rupee"></i>{{trans.amount}}</td>
                         <td>{{trans.method}}</td>
                         <td>{{trans.bkid}}</td>
                         <td>{{trans.pstatus}}</td>

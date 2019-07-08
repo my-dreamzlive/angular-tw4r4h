@@ -19,9 +19,15 @@ export class TransactionsComponent implements OnInit {
       });
     });
     resp.then((res)=>{
-      let restype = this.app.
-      this.transactionlist = res;
-      console.log(res);
+      let restype = this.app.resptype(res);
+      let reserr = this.app.respERR(res);
+      let response = this.app.resp(res);
+      if(!reserr){
+          this.transactionlist = response[0];
+      }else{
+          console.log(res);
+      }
+      
     });
   }
 
