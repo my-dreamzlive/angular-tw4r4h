@@ -58,6 +58,21 @@ export class Apps {
   ngbdt2ymd(ngbdt){
     return ngbdt.year + '-' + ngbdt.month + '-' + ngbdt.day;
   }
+  respERR(obj){
+    let isErr;
+    Object.entries(obj).forEach((v)=>{
+      isErr = v[0];
+      return;
+    });
+    return (isErr == 'RES' || isErr == 'INF') ? false : true;
+  }
+  resptype(obj){
+    let responseType;
+    Object.entries(obj).forEach((v)=>{
+      responseType = v[0];
+    });
+    return responseType;
+  }
   validngbt(v){
     v = (v !== null) ? this.ngbdt2dt(v): null;
     if((v instanceof Date)&&(!isNaN(v))){
