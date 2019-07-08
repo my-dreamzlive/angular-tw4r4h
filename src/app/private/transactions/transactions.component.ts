@@ -33,7 +33,6 @@ export class TransactionsComponent implements OnInit {
             this.status[v[1]['id']] = {"name":v[1]['name'],"type":v[1]['type']};
             
           });
-          console.log(this.status);
       }else{
           console.log(res);
       }
