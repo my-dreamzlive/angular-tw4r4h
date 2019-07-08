@@ -38,12 +38,12 @@
                       <tr *ngFor="let trans of transactionlist">
                         <td class="text-LEFT">{{trans.pdate}}</td>
                         <td class="text-center">{{trans.transid ? trans.transid : 'NA'}}</td>
-                        <td class="text-center">{{trans.pyid ? trans.transid : 'NA'}}</td>
+                        <td class="text-center">{{trans.pyid ? trans.pyid : 'NA'}}</td>
                         <td class="text-center"><i class="fa fa-rupee"></i>{{trans.amount}}</td>
                         <td class="text-center">{{trans.method}}</td>
-                        <td class="text-center">{{trans.bkid}}</td>
-                        <td class="text-center"><span [ngClass]="{'badge-success badge':status[trans.pstatus].type=='RES', 'badge-info badge':status[trans.pstatus].type=='INF', 'badge-danger badge':status[trans.pstatus].type=='ERR','badge-warning badge':status[trans.pstatus].type=='WAR'}">{{status[trans.pstatus].name}}</span></td>
-                        <td class="text-right"><a class="cursor-pointer">View</a></td>
+                        <td class="text-center">{{transtype[trans.transtype]}}{{trans.bkid}}</td>
+                        <td class="text-center"><span class="badge" [ngClass]='{"badge-success":status[trans.pstatus].type=="RES", "badge-info":status[trans.pstatus].type=="INF", "badge-danger":status[trans.pstatus].type=="ERR","badge-warning":status[trans.pstatus].type=="WAR"}' *ngIf="app.vartype(trans.pstatus)!=='undefined'">{{status[trans.pstatus].name}}</span></td>
+                        <td class="text-right"><button class="cursor-pointer btn btn-sm btn-info">View</button></td>
                       </tr>
                     </tbody>
                   </table>
