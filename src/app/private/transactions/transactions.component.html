@@ -35,13 +35,13 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let trans of transactionlist">
-                        <td class="text-center">{{trans.pdate}}</td>
+                        <td class="text-LEFT">{{trans.pdate}}</td>
                         <td class="text-center">{{trans.transid ? trans.transid : 'NA'}}</td>
                         <td class="text-center">{{trans.pyid ? trans.transid : 'NA'}}</td>
                         <td class="text-center"><i class="fa fa-rupee"></i>{{trans.amount}}</td>
                         <td class="text-center">{{trans.method}}</td>
-                        <td class="text-left">{{trans.bkid}}</td>
-                        <td class="text-rright">{{trans.pstatus}}</td>
+                        <td class="text-center">{{trans.bkid}}</td>
+                        <td class="text-right">{{trans.pstatus}}</td>
                       </tr>
                     </tbody>
                   </table>
