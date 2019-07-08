@@ -21,9 +21,30 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <p>
-                    transactions works!
-                  </p>
+                  <table class="table table-hover table-sm">
+                    <thead>
+                      <tr>
+                        <th>TransTime</th>
+                        <th>TransID</th>
+                        <th>PaymentID</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>BookingID</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let trans of transactionlist">
+                        <td>{{trans.pdate}}</td>
+                        <td>{{trans.transid}}</td>
+                        <td>{{trans.pyid}}</td>
+                        <td>{{trans.amount}}</td>
+                        <td>{{trans.method}}</td>
+                        <td>{{trans.bkid}}</td>
+                        <td>{{trans.pstatus}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

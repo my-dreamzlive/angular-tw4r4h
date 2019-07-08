@@ -6,8 +6,8 @@ import { Apps } from './../../app.apps';
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent implements OnInit {
-  transactionlist;
-  transtype = ['','C',''];
+  transactionlist = [];
+  transtype = ['','C','G'];
   constructor(public app: Apps) {this.getlistOfTransaction();}
 
   ngOnInit() {
@@ -19,6 +19,7 @@ export class TransactionsComponent implements OnInit {
       });
     });
     resp.then((res)=>{
+      let restype = this.app.
       this.transactionlist = res;
       console.log(res);
     });
