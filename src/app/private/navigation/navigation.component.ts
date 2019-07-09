@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
    this.navigator = [
-     {"id":"dashboard","name":"Dashboard","link":[''],"icon":"fas fa-fw fa-tachometer-alt"},
+     {"id":"dashboard","name":"Dashboard","link":[''],"icon":"fas fa-fw fa-tachometer"},
      {"id":"rooms","name":"Rooms","link":[],"icon":"fa fa-square",
         "sub":{"name":"Rooms & Quota Setup","items":[
           {"name":"Daily Quota","link":['/dailyquota']},
@@ -36,7 +36,19 @@ export class NavigationComponent implements OnInit {
           {"name":"Universal","link":['/users'],"icon":"fa fa-universal-access"},
         ]}
      },
-     {"id":"settings","name":"Settings","link":['/globals'],"icon":"fa fa-cog"},
+     {"id":"users","name":"Pages","link":[],"icon":"fa fa-file",
+        "sub":{"name":"Pages Manager","items":[
+          {"name":"All Pages","link":['/admins'],"icon":"fa fa-user-secret"},
+          {"name":"Add New","link":['/users'],"icon":"fa fa-universal-access"},
+        ]}
+     },
+     {"id":"mailtemplates","name":"Mails","link":[],"icon":"fa fa-envelope"},
+     {"id":"settings","name":"Settings","link":['/globals'],"icon":"fa fa-cog",
+          "sub":{"name":"Site Settings","items":[
+          {"name":"Global settings","link":['/globals'],"icon":"fa fa-user-secret"},
+          {"name":"Mail","link":['/users'],"icon":"fa fa-universal-access"},
+        ]}
+      },
    ]
   }
 
