@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Apps } from './../../app.apps';
 @Component({
   selector: 'app-globals',
   templateUrl: './globals.component.html',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public app: Apps) { }
 
   ngOnInit() {
   }
-
+  getGlobals(){
+    let resp = new Promise((resolve)=>{
+      this.app.getResponse('master::get::globals').subscribe((res)=>{
+        resolve(res);
+      });
+    });
+    resp.then((res)=>{
+      console.log(res);
+    });
+  }
 }

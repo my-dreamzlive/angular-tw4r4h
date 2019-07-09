@@ -45,8 +45,8 @@ export class NavigationComponent implements OnInit {
      {"id":"mailtemplates","name":"Mails","link":[],"icon":"fa fa-envelope"},
      {"id":"settings","name":"Settings","link":['/globals'],"icon":"fa fa-cog",
           "sub":{"name":"Site Settings","items":[
-          {"name":"Global settings","link":['/globals'],"icon":"fa fa-user-secret"},
-          {"name":"Mail","link":['/users'],"icon":"fa fa-universal-access"},
+          {"name":"Globals","link":['/globals'],"icon":"fa fa-user-secret"},
+          {"name":"Responses","link":['/responses'],"icon":"fa fa-comment"},
         ]}
       },
    ]
