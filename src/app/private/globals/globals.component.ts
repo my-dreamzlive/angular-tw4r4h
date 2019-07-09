@@ -13,6 +13,9 @@ export class GlobalsComponent implements OnInit {
   ngOnInit() {
     this.getGlobals();
   }
+  setGlobals(){
+    
+  }
   getGlobals(){
     let resp = new Promise((resolve)=>{
       this.app.getResponse('master::get::globals').subscribe((res)=>{
