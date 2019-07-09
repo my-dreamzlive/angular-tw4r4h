@@ -8,13 +8,15 @@ import { Apps } from './../../app.apps';
 export class GlobalsComponent implements OnInit {
   globals = [];
   changed = false;
+  changesApplied = false;
   constructor(public app: Apps) { }
 
   ngOnInit() {
     this.getGlobals();
   }
-  setGlobals(){
-    
+  setGlobals(i){
+    this.changed = true;
+    console.log(this.globals[i]);
   }
   getGlobals(){
     let resp = new Promise((resolve)=>{
