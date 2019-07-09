@@ -29,9 +29,9 @@
                     </div>
                     <div class="col-md-4 col-sm-6 col-12 align-self-center">
                       <div class="form-group"> 
-                        <input type="time" [(ngModel)]="global.meta_val" [(ngModelChange)]="setGlobals()" *ngIf="global.meta_type=='time'" class="form-control" />
-                        <input type="number" [(ngModel)]="global.meta_val" [(ngModelChange)]="setGlobals()" *ngIf="global.meta_type=='int'" class="form-control" />
-                        <input type="number" [(ngModel)]="global.meta_val" [(ngModelChange)]="setGlobals()" *ngIf="global.meta_type!=='time'&&global.meta_type!=='int'" class="form-control" />
+                        <input type="time" [(ngModel)]="global.meta_val" (ngModelChange)="setGlobals()" *ngIf="global.meta_type=='time'" class="form-control" />
+                        <input type="number" [(ngModel)]="global.meta_val" (ngModelChange)="setGlobals()" *ngIf="global.meta_type=='int'" class="form-control" />
+                        <input type="number" [(ngModel)]="global.meta_val" (ngModelChange)]="setGlobals()" *ngIf="global.meta_type!=='time'&&global.meta_type!=='int'" class="form-control" />
                       </div>
                     </div>
                   </div>
