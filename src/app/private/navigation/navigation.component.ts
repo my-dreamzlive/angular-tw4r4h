@@ -36,7 +36,7 @@ export class NavigationComponent implements OnInit {
           {"name":"Universal","link":['/users'],"icon":"fa fa-universal-access"},
         ]}
      },
-     {"id":"users","name":"Pages","link":[],"icon":"fa fa-file",
+     {"id":"users","name":"Pages","link":[],"icon":"fa fa-file-text",
         "sub":{"name":"Pages Manager","items":[
           {"name":"All Pages","link":['/admins'],"icon":"fa fa-user-secret"},
           {"name":"Add New","link":['/users'],"icon":"fa fa-universal-access"},
